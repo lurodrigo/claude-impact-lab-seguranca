@@ -1,0 +1,30 @@
+============================================================
+DISQUE DENÚNCIA CLASSIFICATION - COST REPORT
+============================================================
+
+Input file: dados/disk_denuncia.csv
+Output file: output/disk_denuncia_classified.csv
+Date: 2026-05-24 15:32:59
+
+Total rows processed: 83549
+Rows with relatos: 200
+Rows without relatos: 65546
+API calls made: 11
+Batch size: 20
+Max concurrent requests: 25
+
+TOKEN USAGE:
+  Input tokens: 29,741
+  Output tokens: 38,312
+  Cache creation tokens: 20,150
+  Cache read tokens: 0
+  Total tokens: 88,203
+
+COSTS (USD):
+  Input cost: $0.0892
+  Output cost: $0.5747
+  Cache write cost: $0.0756
+  Cache read cost: $0.0000
+  ─────────────────────
+  TOTAL COST: $0.74
+============================================================
