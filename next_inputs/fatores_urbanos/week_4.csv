@@ -1,0 +1,515 @@
+id_resposta_ocorrencia,logradouro,numero_porta,referencia,coordenada_x,coordenada_y,observacao,endereco_informado,valido,id_bairro,bairro_nome,id_tipo_pessoa,id_subarea,subarea_nome,tipo_pessoa_descricao,id_ocupacao_pessoa,ocupacao_pessoa_descricao,id_tipo_frequencia,tipo_frequencia_descricao,ocupacao_drogas,ocupacao_drogas_descricao,id_item_praca,item_praca_descricao,id_tipo_ocorrencia,tipo_ocorrencia_descricao,tipo_ocorrencia_ativo,orgao_responsavel,ocorrencia_informacao,id_orgao_ocorrencia,ocorrencia_orgao_nome,codigo_ocorrencia_orgao
+2353,Rua Afonso Cavalcanti,455,Em frente a Creche Institucional Dr. Paulo Niemeyer,-22.91059826110981,-43.20503861597109,,False,True,8,Cidade Nova,,21.0,Rodoviária - Terminal Gentileza - Estação Leopoldina,,,,,,,,,,29,Tapumes servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há presença de tapumes, placas ou objetos semelhantes que possam servir de esconderijo para pessoas e ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+1292,Rua Marquês de Abrantes,101,,-22.93643954636267,-43.177362259749486,Proximo a Academia Upper,False,True,15,Flamengo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+1615,Rua Miguel Fernandes,490,,-22.8978087,-43.26921369999999,,False,,65,Cachambi,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+2346,Rua Amaral Costa,68,,-22.906031155071968,-43.56077941158597,"Data: 05/02/2026 Horário: 16h
+Fator de Incidência Criminal: Vegetação - Iluminação
+ Na Rua Amaral Costa, foi observada vegetação densa em proximidade com a fiação, além de obstruir a visualização das placas de orientação",False,True,144,Campo Grande,,6.0,Campo Grande: Estação de Trem - Calçadão,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+759,Rua Campo Grande,992,Próximo a passagem subterrânea,-22.90180125063107,-43.559080053198144,Dois veículos parados na faixa de pedestres.,False,True,144,Campo Grande,,6.0,Campo Grande: Estação de Trem - Calçadão,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+242,Avenida de Santa Cruz,4200,A área é comercial.,-22.875537610196023,-43.4634268283844,"Equipe verificou que os comerciantes irregulares estavam vendendo suas mercadorias no lado oposto ao comércio. lado do muro da via férrea. Porém, alguns comerciantes regulares ocupam parte do passeio público para expor mercadorias.",False,True,141,Bangu,,,,,,,,,,,,,14,Comércio irregular obstruindo a visibilidade do passeio,True,SEOP,"O agente deve identificar se no local observado há comércio com apoio de barracas, tendas ou que possam servir de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. 
+O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",4,SEOP,3900
+1103,Rua São Francisco Xavier,S/N,Lado oposto ao Supermarket,-22.909103786066385,-43.23857271487849,Poda de três vegetais,False,True,36,Vila Isabel,,8.0,Estação Maracanã - UERJ,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+2086,Rua Carolina Machado,534,,-22.87448782246552,-43.33974394119128,Não há fatores pertinentes à Comlurb no local vistoriado.,False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,6,Lixo/entulho forçando pedestres à pista,True,COMLURB,"O agente deve identificar se acúmulo de resíduos sólidos (lixo ou entulho)  sobre o passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio, conforme imagens abaixo: 
+<br>
+<img>
+<br>
+Caso o agente tenha conhecimento de alguma dinâmica de descarte específico, as informações devem ser inseridas no campo “observação”, conforme exemplo abaixo: 
+<br>
+Exemplo: Ponto de descarte irregular com depósito periódico de resíduos.",1,COMLURB,4351
+3397,Rua General Góis Monteiro,88,,-22.9561007,-43.1794562,galhos podres,False,True,20,Botafogo,,0.0,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+1504,Rua Conselheiro Agostinho,80,,-22.890802071914724,-43.28512527937341,,False,,64,Todos os Santos,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+923,Rua Sá Ferreira,,semaforo,-22.9807586,-43.1913652,,False,,24,Copacabana,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+1782,Avenida Pastor Martin Luther King Junior,126,LATERAL DA ESTAÇÃO DE METRÔ DE DEL CASTILHO,-22.87908653920356,-43.27203092924733,,False,,53,Del Castilho,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+836,Avenida Olegário Maciel,460,Em frente a drywash,-23.0104558,-43.3044385,Calçada quebrada,False,True,128,Barra da Tijuca,,2.0,Av Américas - Av Lúcio Costa,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+2297,Praça Maracanã,S/N,Patota Bar e restaurante,-22.913511209916784,-43.235730518332474,Tapume servindo de esconderijo,False,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,29,Tapumes servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há presença de tapumes, placas ou objetos semelhantes que possam servir de esconderijo para pessoas e ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+3414,Avenida Lauro Sodré,1250,ciclovia central,-22.95717993826287,-43.17732159829754,colocar refletores na ciclovia central,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+1400,Rua Coração de Maria,256,,-22.894544094433986,-43.27672668896702,Vegetal em contato com a rede de energia elétrica de média tensão.,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+2826,Rua General Severiano,203,,-22.954043061974144,-43.18013973384928,Melhoria da iluminação das calçadas. Grande circulação de pedestres por conta de ponto de ônibus.,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+2556,Avenida Ayrton Senna,4701,Passarela,-22.97039891925959,-43.360956571278216,Passarela mal iluminada,True,True,128,Barra da Tijuca,,4.0,Av Ayrton Senna,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+3405,Avenida Pasteur,241,escadaria do viaduto,-22.951302796944567,-43.180625869645375,colocar refletores na escadaria que aglomera psrs,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+2973,Rua Elisa de Albuquerque,157,,-22.8956702,-43.2856133,Motos estacionadas na Calçada.,False,True,64,Todos os Santos,,,,,,,,,,,,,23,Motocicletas trafegando no passeio,True,GM-Rio,"O agente deve identificar se há pontos ou rotas conhecidas de tráfego irregular de motocicletas sobre o passeio. Caso tenha conhecimento de alguma rotina específica, o agente poderá complementar as informações no campo “observações”, conforme os exemplos abaixo: <br>
+
+
+Exemplo 1: O trecho é utilizado para tráfego de motorista de aplicativo 
+Exemplo 2: O trecho é utilizado para tráfego mototaxistas",6,GM-Rio,3931
+3357,Rua Henrique de Novais,22,,-22.9554496,-43.19215519999999,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,Adulto,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+3224,Rua Voluntários da Pátria,389,,-22.9553022,-43.1943321,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+463,Praia de Botafogo,316,"PRAIA DE BOTAFOGO, ENTRE OS Nº 308 AO 340.",-22.945430262566585,-43.1817621726316,"Observado um (1) PSR em frente, 316. Sem alterações nos demais aspectos elencados.",False,True,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,Adulto,,De maneira transitória,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2999,Rua São Francisco Xavier,478,Rua Radialista Waldir Amaral até av. Prof. Manoel de Abreu,-22.913268472142153,-43.2351304187801,12 árvores apresentando necessidade de poda,False,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1213,Rua Silva Mourão,87,"Rua Silva Mourão, da Av Dom Hélder Câmara até a Rua Honório",-22.88850846229583,-43.27952241587014,,False,True,65,Cachambi,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,23,Motocicletas trafegando no passeio,True,GM-Rio,"O agente deve identificar se há pontos ou rotas conhecidas de tráfego irregular de motocicletas sobre o passeio. Caso tenha conhecimento de alguma rotina específica, o agente poderá complementar as informações no campo “observações”, conforme os exemplos abaixo: <br>
+
+
+Exemplo 1: O trecho é utilizado para tráfego de motorista de aplicativo 
+Exemplo 2: O trecho é utilizado para tráfego mototaxistas",6,GM-Rio,3931
+3412,Rua Marechal Ramon Castilla,237,,-22.9555781,-43.1739465,,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+902,Rua Aguiar,60,,-22.924112984321543,-43.220816474023955,,False,True,33,Tijuca,,11.0,Estações São Francisco Xavier - Afonso Pena,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+755,Avenida Pastor Martin Luther King Junior,12,,-22.874680992296113,-43.28119839227622,,False,,54,Inhauma,,,,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1396,Avenida Pasteur,72,Policlínica Botafogo,-22.95086232598652,-43.17856970816582,Não foi identificado o Fator de Incidência Criminal.,False,,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,21,Praças e Parques,True,,O agente deve identificar: <br> - Se há escuridão; <br> - Se há arbustos e vegetação que sirva de esconderijo para pessoas ou objetos; <br> - Se há mobiliário urbano tais como bancas de jornal ou quiosques em mau estado de conservação ou abandonados possam estar servindo de esconderijo para indivíduos.,6,GM-Rio,3931
+1658,Avenida Vieira Souto,,,-22.98672241988819,-43.20000406513005,,False,True,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+3259,Praia de Botafogo,11,,-22.94214687917509,-43.17701314984552,,False,True,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,Adulto,,Pernoite,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2068,Rua Senador Vergueiro,93,,-22.9359742,-43.175088,,False,True,15,Flamengo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,Adulto,,De maneira transitória,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+3099,Avenida Afrânio de Melo Franco,353,Ponto de Taxi Leblon Service,-22.98047061008705,-43.21821772403016,,False,True,26,Leblon,,13.0,Jardim de Alah,,,,,,,,,,13,Mobiliário/estrutura servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há mobiliário urbano tais como bancas de jornal ou quiosques que embora não estejam abandonados ou em mau estado de conservação por sua posição e estrutura possa, em determinados horários servir de esconderijo para indivíduos ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+3109,Avenida Borges de Medeiros,699,Próximo ao Monte Líbano,-22.9809575,-43.2149797,,True,True,26,Leblon,,13.0,Jardim de Alah,,,,,,,,,,40,Mobiliário abandonado servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há mobiliário urbano tais como bancas de jornal ou quiosques em mau estado de conservação ou abandonados possam estar servindo de esconderijo para indivíduos. Veja o exemplo  da reportagem abaixo: 
+<br><img>",5,SECONSERVA,4300
+1588,Avenida Vieira Souto,,,-22.98632301018398,-43.2079310119949,,False,True,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+2421,Rua Felipe Cardoso,130,Antigo Colégio Dom Otto Mota,-22.91712158209025,-43.68377992877151,Melhora a intensidade das luminárias,False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+3227,Rua Voluntários da Pátria,316,Farmácia,-22.9542498,-43.1927461,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+2396,Avenida Armando Lombardi,421,Em frente ao Vitrini,-23.0071862,-43.3128246,Veículos parados na via e sob calçada,False,True,128,Barra da Tijuca,,2.0,Av Américas - Av Lúcio Costa,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+1979,Avenida Embaixador Abelardo Bueno,217,Posto Ipiranga,-22.9734677,-43.3971548,Local servindo de esconderijo.,True,True,128,Barra da Tijuca,,,,,,,,,,,,,13,Mobiliário/estrutura servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há mobiliário urbano tais como bancas de jornal ou quiosques que embora não estejam abandonados ou em mau estado de conservação por sua posição e estrutura possa, em determinados horários servir de esconderijo para indivíduos ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+523,Rua Tenente Costa,33,A área é residencial.,-22.89638847697333,-43.27558636665344,Equipe esteve no local para fazer a vistoria e nesta dia não foi visto alteração.,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1561,Rua Dias da Cruz,58-74,Praça Agripino Grieco,-22.901732529182244,-43.27976393122767,,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+557,Avenida Pastor Martin Luther King Junior,87,o local é comercial. Fica a via RJ-083. No local fica a passarela de travessia de pedestre para pegar o Metrô Nova América/Del Castilho.,-22.879459152004753,-43.27234981021366,Equipe verificou comércio de ambulante no local.,False,True,53,Del Castilho,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,14,Comércio irregular obstruindo a visibilidade do passeio,True,SEOP,"O agente deve identificar se no local observado há comércio com apoio de barracas, tendas ou que possam servir de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. 
+O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",4,SEOP,3900
+1764,Viaduto Engenheiro Alvarino José Fonseca,30,CANTEIRO CENTRAL,-22.880838285101635,-43.267763798860514,3ª ÁRVORE,False,,52,Maria da Graça,,,,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1616,Rua Miguel Fernandes,530,Ao lado,-22.8976596,-43.268833,,False,,65,Cachambi,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+710,Rua Carolina Machado,2212,,-22.8580466432566,-43.37601842746279,VEGETAL E SEM PAVIMENTAÇÃO,False,True,90,Marechal Hermes,,9.0,Estação Marechal Hermes,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+1698,Avenida Dom Hélder Câmara,4187,,-22.8816512,-43.2745482,Vegetal em contato com a rede de energia elétrica de média tensão,False,,53,Del Castilho,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1770,Rua Jangadeiros,,Praça General Osorio,-22.985199761953723,-43.19693461060524,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1551,Rua Nelson Mandela,190,Voluntarios da patria X Nelson Mandela,-22.95048513000283,-43.18464469815339,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,14,Comércio irregular obstruindo a visibilidade do passeio,True,SEOP,"O agente deve identificar se no local observado há comércio com apoio de barracas, tendas ou que possam servir de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. 
+O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",4,SEOP,3900
+2729,Rua Conselheiro Galvão,492,Lado oposto 492,-22.8637628,-43.34360909999999,,False,,85,Turiaçu,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,26,Ponto de ônibus com histórico de vandalismo,True,SMTR,"O agente deve identificar se há pontos de embarque ou desembarque de coletivos onde há histórico de  vandalismo e/ou depredação que, em geral, possam ser ocasionados por falha na prestação do serviço, tais como: <br>
+- Redução da frota<br> 
+- Desvio de itinerário <br>
+- Não parada nos pontos obrigatórios<br>
+- Parada distante dos pontos  previamente estabelecidos",8,SMTR,2900
+942,Prudente de morais,S/N,Prudente de morais x Jangadeiros,-22.98557541459181,-43.196974660968785,,True,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+3238,Rua Voluntários da Pátria,181,,-22.9527682,-43.1877608,Ambos os lados da rua com essa dificuldade,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+2573,Rua Arquias Cordeiro,690,,-22.89720880585049,-43.284502029418945,,False,True,64,Todos os Santos,,10.0,Estação Méier - Cachambi,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+690,Rua Vinte e Quatro de Maio,4406,,-22.90402673353591,-43.2758845734704,,False,True,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+1517,Rua Felipe Cardoso,130,Na porta do Banco do Brasil,-22.917110301583204,-43.68379758710357,Foi localizado uma pessoa em situação de rua em frente ao Banco do Brasil,False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,Adulto,,Pernoite,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2727,Rua Felipe Cardoso,S/N,em frente ao Santa Cruz Shopping,-22.920629280696463,-43.681128612140206,,True,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,26,Ponto de ônibus com histórico de vandalismo,True,SMTR,"O agente deve identificar se há pontos de embarque ou desembarque de coletivos onde há histórico de  vandalismo e/ou depredação que, em geral, possam ser ocasionados por falha na prestação do serviço, tais como: <br>
+- Redução da frota<br> 
+- Desvio de itinerário <br>
+- Não parada nos pontos obrigatórios<br>
+- Parada distante dos pontos  previamente estabelecidos",8,SMTR,2900
+1063,Rua Fonseca,125,,-22.876795930853383,-43.46553683403396,,False,True,141,Bangu,,5.0,Bangu: Calçadão - Bangu Shopping,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+1098,Rua São Francisco Xavier,"Rua São Francisco Xavier, do retorno da Rua São Francisco Xavier (antes do Mercado Supermarket) do outro lado da própria Rua São Francisco Xavier até a Rua Luiz de Matos","Trecho: 100262 - Estação Maracanã x UERJ | Rua São Francisco Xavier, do retorno da Rua São Francisco Xavier (antes do Mercado Supermarket) do outro lado da própria Rua São Francisco Xavier até a Rua Luiz de Matos",-22.909095870413925,-43.238578803788705,100262,True,,36,Vila Isabel,,8.0,Estação Maracanã - UERJ,,,,,,,,,,34,Sem ocorrência,True,,,19,Prefeitura,1
+654,Rua Felipe Cardoso,94,Em frente a Drogaria do Povo.,-22.916920499286896,-43.683830028536065,Motos trafegava no passeio público e estacionaram no mesmo causando transtorno aos transeuntes.,False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,23,Motocicletas trafegando no passeio,True,GM-Rio,"O agente deve identificar se há pontos ou rotas conhecidas de tráfego irregular de motocicletas sobre o passeio. Caso tenha conhecimento de alguma rotina específica, o agente poderá complementar as informações no campo “observações”, conforme os exemplos abaixo: <br>
+
+
+Exemplo 1: O trecho é utilizado para tráfego de motorista de aplicativo 
+Exemplo 2: O trecho é utilizado para tráfego mototaxistas",6,GM-Rio,3931
+3206,Rua Conde de Irajá,183,Rua capistrano de Abreu 16,-22.9540459,-43.1955228,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+3088,Rua Professor Antônio Maria Teixeira,59,,-22.98271382815205,-43.2172467518262,,False,True,26,Leblon,,13.0,Jardim de Alah,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1654,Avenida Vieira Souto,,,-22.986279764943973,-43.208113885578655,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1674,Rua Prudente de Morais,,,-22.984707174135416,-43.197552221176224,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,16,Veículos de grande porte obstruindo a visibilidade,True,SEOP,"O agente deve identificar se há pontos de estacionamento de veículos de médio ou grande porte que eventualmente sirvam de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo:<br> 
+<img><br>
+Observação: O agente deve relatar mesmo os pontos regulares de estacionamento e ou parada de veículos.",4,SEOP,3900
+3205,Rua Conde de Irajá,165,,-22.95385306159869,-43.19568869730091,Problema se estende por todo trecho até a rua São Clemente,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+503,Rua Visconde de Pirajá,351,"Rua Visconde de Pirajá , do nº 336 AO 259",-22.984218824928007,-43.20609981665188,"Em frente ao numeral 351, foram observados 10 motos elétricas, estacionadas no passeio, atrapalhando a passagem de pedestre. Sem alterações nos outros itens elencados no trecho referenciado.",False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+603,Rua Conselheiro Galvão,58,A área é comercial.,-22.871472029184932,-43.337274378897256,Equipe esteve no local para fazer a vistoria e nesta dia não foi visto alteração.,False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2627,Estrada do Portela,222,,-22.870982566125836,-43.34135172117037,"Carros estacionando de forma irregular, inclusive para venda de mercadorias.",False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+700,Rua Arquias Cordeiro,3033,,-22.901602256872472,-43.27824132339775,Local com presença permanente de PSRs,False,,63,Meier,,10.0,Estação Méier - Cachambi,Adulto,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+1365,Rua Paulo VI,20,,-22.938948356000132,-43.17917972933596,,False,True,15,Flamengo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1190,Rua Aníbal de Mendonça,19,,-22.985629105668192,-43.211421474153305,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,29,Tapumes servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há presença de tapumes, placas ou objetos semelhantes que possam servir de esconderijo para pessoas e ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+2689,Rua General Severiano,,TRECHO ENTRE RUA DA PASSAGEM E GENERAL SEVERIANO,-22.954228638201425,-43.18068287191762,GALHO DE ÁRVORE CAINDO,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+3291,Rua Professor Álvaro Rodrigues,34,Em frente ao bazar oxala,-22.951045147580796,-43.18205206483658,Na sequência há indivíduos arbóreos de maior tamanha que também merecem atenção,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1373,Praia de Botafogo,"Praia de Botafogo, trecho compreendido entre a Rua Farani e a Rua Fernando Ferrari","Trecho: 97976 - Botafogo Praia Shopping x Marquês de Abrantes | Praia de Botafogo, trecho compreendido entre a Rua Farani e a Rua Fernando Ferrari",-22.94278067748708,-43.18121388771599,97976,True,,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,,,,,,,,,,34,Sem ocorrência,True,,,19,Prefeitura,1
+3137,Avenida Borges de Medeiros,625,,-22.98305544062793,-43.215479673854134,,False,True,26,Leblon,,13.0,Jardim de Alah,Famílias ou casais,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2251,Rua Castro Alves,248,,-22.896608486613324,-43.27986432926959,"Calçada estreita,  sem lixo ou entulho",False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,6,Lixo/entulho forçando pedestres à pista,True,COMLURB,"O agente deve identificar se acúmulo de resíduos sólidos (lixo ou entulho)  sobre o passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio, conforme imagens abaixo: 
+<br>
+<img>
+<br>
+Caso o agente tenha conhecimento de alguma dinâmica de descarte específico, as informações devem ser inseridas no campo “observação”, conforme exemplo abaixo: 
+<br>
+Exemplo: Ponto de descarte irregular com depósito periódico de resíduos.",1,COMLURB,4351
+2674,Rua Afonso Cavalcanti,455,Entre rua Pinto de Azevedo até a creche,-22.9105484362514,-43.20499521734002,10 árvores apresentando necessidade de poda,False,True,8,Cidade Nova,,21.0,Rodoviária - Terminal Gentileza - Estação Leopoldina,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1197,Avenida Pastor Martin Luther King Junior,1335,"Av Pastor Martin Luther King Jr (trecho do Cemitério de Inhaúma), da Praça Almirante José Joaquim Inácio até a Av General Cândido Martins Sem ocorrência",-22.87519758343256,-43.281320463936275,,False,True,54,Inhauma,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1399,Rua Coração de Maria,278,,-22.8942347,-43.2763723,,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+3385,Rua Campo Grande,S/N,Entre a Rua Gianerine e a Rua dos Franciscanos,-22.902166446226538,-43.56068789340544,"Motos transitam sobre a calçada em ambos os lados da via, fato que possibilita furtos de celulares.",True,True,144,Campo Grande,,6.0,Campo Grande: Estação de Trem - Calçadão,,,,,,,,,,23,Motocicletas trafegando no passeio,True,GM-Rio,"O agente deve identificar se há pontos ou rotas conhecidas de tráfego irregular de motocicletas sobre o passeio. Caso tenha conhecimento de alguma rotina específica, o agente poderá complementar as informações no campo “observações”, conforme os exemplos abaixo: <br>
+
+
+Exemplo 1: O trecho é utilizado para tráfego de motorista de aplicativo 
+Exemplo 2: O trecho é utilizado para tráfego mototaxistas",6,GM-Rio,3931
+2568,Rua Silva Mourão,21,Calçada,-22.8898518,-43.2791272,Trecho da rua muito escuro e imóvel com calçada com aspecto de abandonado.,False,,65,Cachambi,,,,,,,,,,,,,13,Mobiliário/estrutura servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há mobiliário urbano tais como bancas de jornal ou quiosques que embora não estejam abandonados ou em mau estado de conservação por sua posição e estrutura possa, em determinados horários servir de esconderijo para indivíduos ou objetos. Veja o exemplo abaixo: 
+<br>
+<img>",5,SECONSERVA,4300
+2024,Rua Vinte e Quatro de Maio,1229,,-22.9050018,-43.27526779999999,Poda de árvore necessária para melhorar iluminação,False,,61,Engenho Novo,,,,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+1795,Avenida Pastor Martin Luther King Junior,126,PONTO DE ÔNIBUS PRÓXIMO À PASSARELA DO METRÔ DE DEL CASTILHO,-22.879280191250132,-43.27127085102947,,False,,53,Del Castilho,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+524,Rua Tenente Costa,33,A área é residencial.,-22.89638847697333,-43.27558636665344,Equipe esteve no local para fazer a vistoria e nesta dia não foi visto alteração.,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+1560,Rua Felipe Cardoso,7,Em frente a previdência social,-22.9160697,-43.6841408,Foi localizado uma pessoa em situação de rua,False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+996,Rua General Góis Monteiro,88,,-22.9561007,-43.1794562,,False,,20,Botafogo,,,,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1838,Avenida Nossa Senhora de Copacabana,661,,-22.9711863,-43.1863852,,False,,24,Copacabana,,3.0,Av Atlântica - Av Barata Ribeiro,Adulto,,Pernoite,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+1709,Rua Visconde de Pirajá,,,-22.98430603116048,-43.20382639004225,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+3275,Rua Jornalista Orlando Dantas,S/N,,-22.941179516785624,-43.18205841914906,,False,True,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,Adulto,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2016,Rua João Vicente,1241,Próximo ao viaduto de Bento Ribeiro,-22.86485159285847,-43.36368596302319,Não há ações pertinentes à Comlurb no local no trecho da Rua João Vicente (da Rua Divisória até após o viaduto de Bento Ribeiro).,False,,89,Bento Ribeiro,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+2755,Rua São Francisco Xavier,372,,-22.91547452596109,-43.23222586972675,Placa de sinalização atrapalhando a iluminação,False,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+1008,Rua Ângelo Dantas,S/N,Entre Viaduto de Cascadura e Rua Padre Manso,-22.88011795430662,-43.33184047912807,Retenção devida ao afunilamento da pista,True,True,82,Cascadura,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+1269,Rua São Francisco Xavier,S/N,"Rua São Francisco Xavier, da Rua Radialista Waldir Amaral até o acesso da Av Rei Pelé",-22.910930106767086,-43.23771834340352,Manhã e tarde,True,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+3309,Rua Professor Álvaro Rodrigues,220,,-22.9529189,-43.1847686,"Até de grande circulação para acesso ao metrô . Iluminação não se faz suficiente no período noturno , propiciando possível esconderijo e cena de uso de entorpecentes",False,True,20,Botafogo,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+678,Rua São Francisco Xavier,"Rua São Francisco Xavier, da Rua Jaceguai até a Rua Visconde de Itamarati","Trecho: 259957 - Estação Maracanã x UERJ | Rua São Francisco Xavier, da Rua Jaceguai até a Rua Visconde de Itamarati",-22.915640566278665,-43.231949730197165,259957,True,,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,34,Sem ocorrência,True,,,19,Prefeitura,1
+3057,Avenida Rio Branco,219,Em frente à biblioteca nacional,-22.9096017,-43.175473,,False,True,5,Centro,,19.0,Presidente Vargas - Campo de Santana - Central do Brasil - Cinelândia,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+1452,Rua Voluntários da Pátria,108,,-22.951735531059953,-43.18522681338781,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,22,Ponto de retenção do tráfego,True,CET-Rio,"O agente deve identificar se há pontos de retenção de tráfego viário, provocados ou não por elementos indesejados tais como buracos, falta de sinalização, má sincronização de sinaleiras e ou desobediência de sinalização existente. 
+Nos casos de pontos de retenção frequentes o agente deve informar, no campo “observações” os dias e horários aproximados em que o fenômeno acontece, conforme exemplo abaixo:<br>
+
+Exemplo: Das segundas às sextas, entre 7h e 9h e 17h e 20h30.",2,CET-Rio,2951
+2630,Avenida Ministro Edgard Romero,97,,-22.874113957920713,-43.33747321360528,Comercio irregular na pista,False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1338,Rua Alfeu Faria Castro,30,Próximo ao viaduto Negrão de Lima,-22.876302880426373,-43.3344933576357,,False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,Adulto,,Pernoite,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+1142,Avenida Pastor Martin Luther King Junior,S/N,Shopping Nova America,-22.880326822164953,-43.269524574279785,,True,True,53,Del Castilho,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,16,Veículos de grande porte obstruindo a visibilidade,True,SEOP,"O agente deve identificar se há pontos de estacionamento de veículos de médio ou grande porte que eventualmente sirvam de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo:<br> 
+<img><br>
+Observação: O agente deve relatar mesmo os pontos regulares de estacionamento e ou parada de veículos.",4,SEOP,3900
+3154,Avenida Borges de Medeiros,210,,-22.9843997185572,-43.21600580701543,,False,True,26,Leblon,,13.0,Jardim de Alah,Adulto,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+685,R. Vinte e Quatro de Maio,S/N,,-22.90352803944736,-43.27085143386097,,False,,61,Engenho Novo,,10.0,Estação Méier - Cachambi,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1923,Rua Barata Ribeiro,160,,-22.9637341,-43.1787648,,False,,24,Copacabana,,,,Adulto,,Sinais de uso como moradia,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+1360,Rua Coração de Maria,426,,-22.89158,-43.2742557,,False,,65,Cachambi,,10.0,Estação Méier - Cachambi,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1392,Rua Coração de Maria,346,Ao lado,-22.8929857,-43.2754498,,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1643,Avenida Vieira Souto,,,-22.98650030638485,-43.20426642024141,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+1576,Praia de Botafogo,,Rua Marques de abrantes  x Farani,-22.94156542819524,-43.17965489302305,,False,True,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+3214,Rua Camuirano,109,Esquina com voluntários da pátria,-22.95449382684318,-43.19412578902689,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,5,Vegetação obstruindo a visibilidade do passeio,True,COMLURB,"O agente deve identificar se há presença de vegetação que sirva de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",1,COMLURB,4351
+2732,Rua Conselheiro Galvão,280,ao lado do conjunto habitacional,-22.8674276,-43.3404538,Moradores de rua próximo a pontos de ônibus,True,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,26,Ponto de ônibus com histórico de vandalismo,True,SMTR,"O agente deve identificar se há pontos de embarque ou desembarque de coletivos onde há histórico de  vandalismo e/ou depredação que, em geral, possam ser ocasionados por falha na prestação do serviço, tais como: <br>
+- Redução da frota<br> 
+- Desvio de itinerário <br>
+- Não parada nos pontos obrigatórios<br>
+- Parada distante dos pontos  previamente estabelecidos",8,SMTR,2900
+1447,Rua General Severiano,169,,-22.954010928568668,-43.18002812682034,,False,True,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+3204,Rua Conde de Irajá,177,Número como referência contudo problema similar em toda extensão até a rua São Clemente,-22.954040768526376,-43.19564935823533,,False,True,20,Botafogo,,15.0,Metrô Botafogo - Rua São Clemente - Rua Voluntários da Pátria,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+1113,Rua Professor Eurico Rabelo,20,Acesso sul B,-22.914299071789348,-43.230244900602294,Localizado 4 pessoas em situação de vulnerabilidade social,False,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,Adulto,,Pernoite,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+743,Rua García Redondo,59,,-22.891021376334344,-43.275907744788626,,False,,65,Cachambi,,10.0,Estação Méier - Cachambi,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+3273,Rua Farani,464,praça,-22.941687514010397,-43.181361044805186,praça mal iluminada,False,True,20,Botafogo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,,,,,,,,,,7,Área mal iluminada com circulação de pedestres,True,Rio Luz,"O agente deve identificar se há escuridão sobre trechos onde haja circulação de pessoas. Devem ser especialmente considerados: <br> 
+
+Pontos de ônibus <br>
+Acessos de estações de metrô e trem <br>
+Acessos à passarelas <br>
+Passagens subterrâneas<br>
+Pontos de travessia de logradouros (sinais) <br>
+
+O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja o exemplo abaixo: 
+<img>",3,Rio Luz,1552
+691,Rua 24 de maio,1257,Restaurante popular,-22.9044671,-43.2757861,,True,,63,Meier,,,,Adulto,,De maneira transitória,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2399,Avenida Presidente Vargas,762,Lado oposto porto carioca,-22.9021074,-43.1829003,,False,True,5,Centro,,,,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+2070,Rua Marquês de Abrantes,151,,-22.9384084,-43.1776181,,False,True,15,Flamengo,,17.0,Praia de Botafogo - Rua Marquês de Abrantes,Famílias ou casais,,De maneira transitória,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+313,Avenida Nossa Senhora de Copacabana,331,Av. Nossa Sra de Copacabana - entre o número 291 e 360.,-22.96694760063997,-43.180115243408025,"Neste trecho havia 2 motos elétricas na calçada, presas à uma árvore.",False,,24,Copacabana,,3.0,Av Atlântica - Av Barata Ribeiro,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+1748,Rua Lauro Muller,"Rua Lauro Müller, trecho compreendido entre a Av Lauro Sodré e a Av Carlos Peixoto","Trecho: 97968 - Rio Sul | Rua Lauro Müller, trecho compreendido entre a Av Lauro Sodré e a Av Carlos Peixoto",-22.956638598024213,-43.17643053996834,97968,True,,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,34,Sem ocorrência,True,,,19,Prefeitura,1
+515,Rua Arquias Cordeiro,370 - 20770-000,O local fica o Hospital Salgado Filho.,-22.900576872986058,-43.278183053029665,Equipe verificou comércio irregular obstruindo visibilidade do passeio.,False,,63,Meier,,10.0,Estação Méier - Cachambi,,,,,,,,,,14,Comércio irregular obstruindo a visibilidade do passeio,True,SEOP,"O agente deve identificar se no local observado há comércio com apoio de barracas, tendas ou que possam servir de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. 
+O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",4,SEOP,3900
+1187,Rua Carvalho de Souza,"2-152,1-151",EMBAIXO DO VIADUTO NEGRAO LIMA,-22.8763732151082,-43.33453207403575,,False,,83,Madureira,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,Adulto,,De maneira transitória,,,,,,,19,Pessoas em situação de rua,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+2112,Rua Ângelo Dantas,82,Light,-22.880808086230093,-43.33113960157537,Vegetação ofuscando a visão no local.,False,,82,Cascadura,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+2434,Avenida Paula Sousa,272,Rua Luiz Gama,-22.9146285,-43.2276757,,False,True,35,Maracanã,,8.0,Estação Maracanã - UERJ,,,,,,,,,,40,Mobiliário abandonado servindo de esconderijo,True,SECONSERVA,"O agente deve identificar se há mobiliário urbano tais como bancas de jornal ou quiosques em mau estado de conservação ou abandonados possam estar servindo de esconderijo para indivíduos. Veja o exemplo  da reportagem abaixo: 
+<br><img>",5,SECONSERVA,4300
+1393,Avenida Pasteur,72,Policlínica Botafogo,-22.95086232598652,-43.17856970816582,Não foi identificado o Fator de Incidência Criminal.,False,,20,Botafogo,,20.0,Rio Sul,,,,,,,,,,23,Motocicletas trafegando no passeio,True,GM-Rio,"O agente deve identificar se há pontos ou rotas conhecidas de tráfego irregular de motocicletas sobre o passeio. Caso tenha conhecimento de alguma rotina específica, o agente poderá complementar as informações no campo “observações”, conforme os exemplos abaixo: <br>
+
+
+Exemplo 1: O trecho é utilizado para tráfego de motorista de aplicativo 
+Exemplo 2: O trecho é utilizado para tráfego mototaxistas",6,GM-Rio,3931
+592,Estrada do Portela,488,A predominância do local cia é residencial.,-22.866933189303268,-43.345622038044944,Equipe esteve no local para fazer a vistoria e nesta dia não foi visto alteração.,False,,85,Turiaçu,,14.0,Madureira - Estação de Trem - Madureira Shopping - Mercadão,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
+505,Rua Prudente de Morais,729,"Rua Prudente de Moraes, do nº 457ao 837.",-22.9853569187857,-43.20407367532742,Sem alterações em todos os itens elencados no trecho referenciado.,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,20,Cena de uso de drogas,True,SMAS,A constatação se dá por observação in loco.,7,SMAS,1700
+537,Rua Silva Rabêlo,119,A área é residencial.,-22.89904280412795,-43.28269945071005,Equipe esteve no local para fazer a vistoria e nesta dia não foi visto alteração.,False,,63,Meier,,,,,,,,,,,,,14,Comércio irregular obstruindo a visibilidade do passeio,True,SEOP,"O agente deve identificar se no local observado há comércio com apoio de barracas, tendas ou que possam servir de anteparo visual entre a pista de rolagem e o passeio ou entre os passeios do logradouro. 
+O objetivo desta ocorrência é identificar pontos de passagem que possam ocultar os transeuntes fazendo com que eles não sejam visíveis por quem esteja no passeio oposto ou na pista de rolagem, conforme exemplo abaixo: 
+<br>
+<img>",4,SEOP,3900
+2248,Avenida Borges de Medeiros,,Lagoa / próximo monte Líbano,-22.979257044737867,-43.215632649962735,Moradias existentes embaixo da passarela e entre vãos,False,True,27,Lagoa,,,,,,,,,,,,,41,Vãos ou cavidades usados como esconderijo,True,SECONSERVA,"O agente deve identificar se há estruturas fixas tais como vãos, frestas, cavidades em obras de arte que possam servir como esconderijo para pessoas ou objetos. Deve-se ter atenção com pontos próximos a rotas de pessoas ou veículos. Veja os exemplos abaixo:
+
+<br><img>",5,SECONSERVA,4300
+1590,Avenida Vieira Souto,,,-22.98632301018398,-43.2079310119949,,False,,25,Ipanema,,12.0,General Osório - Nossa Senhora da Paz,,,,,,,,,,41,Vãos ou cavidades usados como esconderijo,True,SECONSERVA,"O agente deve identificar se há estruturas fixas tais como vãos, frestas, cavidades em obras de arte que possam servir como esconderijo para pessoas ou objetos. Deve-se ter atenção com pontos próximos a rotas de pessoas ou veículos. Veja os exemplos abaixo:
+
+<br><img>",5,SECONSERVA,4300
+2019,Rua Felipe Cardoso,3,,-22.9156716,-43.6835296,"Trecho da rua Álvaro Alberto com  Barão da Laguna. 
+Obs: Calçadão de Santa Cruz, com muitos camelos impedindo a passagem de pedestre , com alto potencial de furtos.",False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,12,Calçada estreita forçando pedestres à pista,True,SECONSERVA,"O agente deve identificar se há pontos estreitamento do passeio que forcem os pedestres a transitarem sobre a pista de rolagem ou muito próximo ao meio fio. Esses pontos de estreitamento podem ocorrer ou não pela presença de estruturas na calçada. Veja os exemplos abaixo: <br>
+<img>",5,SECONSERVA,4300
+1482,Rua Conselheiro Agostinho,35,,-22.8906216,-43.2841378,Vegetal em contato com a rede de energia elétrica de média tensão,False,,64,Todos os Santos,,7.0,Estação Del Castilho - Norte Shopping,,,,,,,,,,27,Vegetação encobrindo iluminação pública,True,COMLURB,"O agente deve identificar se há copas, galhos ou arbustos que encubram estruturas de iluminação e ou câmeras, causando pontos de escuridão sobre trechos onde haja circulação de pessoas. O agente não necessita avaliar pontos de escuridão onde não haja circulação de pedestres como tais como fachadas e monumentos. Veja os exemplos abaixo: <br>
+<img>
+<br>
+Observação: Essa ocorrência deve ser observada no período noturno.",1,COMLURB,4351
+248,Rua Felipe Cardoso,540,Em frente ao Shopping de Santa Cruz.,-22.920808363770902,-43.68064886968127,"A equipe verificou que em frente ao Shopping de Santa Cruz ficam vans da Linha Santa Cruz x Campo Grande, estacionadas irregularmente no ponto de ônibus.",False,True,149,Santa Cruz,,22.0,Santa Cruz: Estação - Santa Cruz Shopping,,,,,,,,,,15,Estacionamento irregular forçando pedestres à pista,True,SEOP,"O agente deve identificar se há veículos de qualquer porte estacionados irregularmente sobre o calçamento que force o pedestre a transitar pela pista de rolamento.<br>
+<img>
+<br>
+Caso o agente tenha mais detalhes sobre a ocupação do passeio, ele poderá detalhar no campo “observações"", conforme exemplos abaixo: <br>
+
+Exemplo 1: Carros estacionados entre os números 43 e 47, em razão da existência de oficina mecânica no número 45. <br>
+Exemplo 2: Carros estacionados por serviço de manobrista relacionado à casa de festas situada no número 67 do logradouro.",4,SEOP,3900
