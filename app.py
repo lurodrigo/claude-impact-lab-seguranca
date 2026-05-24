@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import io
+from datetime import datetime
+from pathlib import Path
+
 import altair as alt
 import geopandas as gpd
 import pandas as pd
@@ -9,6 +13,12 @@ import pydeck as pdk
 import streamlit as st
 
 import data_loader as dl
+
+UPLOAD_SOURCES = [
+    ("ocorrencias", "Ocorrências (crimes)"),
+    ("disk_denuncia", "Disk denúncia"),
+    ("fatores_urbanos", "Fatores urbanos"),
+]
 
 st.set_page_config(page_title="Segurança Rio", layout="wide")
 
@@ -150,9 +160,62 @@ def crime_timeseries(ocorr: gpd.GeoDataFrame) -> alt.Chart:
     )
 
 
+def _validate_upload(source: str, raw: bytes) -> tuple[pd.DataFrame | None, str | None]:
+    kwargs = dl.READ_KWARGS.get(source, {})
+    try:
+        df = pd.read_csv(io.BytesIO(raw), **kwargs)
+    except (UnicodeDecodeError, pd.errors.ParserError, ValueError) as exc:
+        return None, f"falha ao ler CSV: {exc}"
+    required = dl.REQUIRED_COLS.get(source, set())
+    missing = required - set(df.columns)
+    if missing:
+        return None, f"colunas faltando: {sorted(missing)}"
+    return df, None
+
+
+def weekly_upload_panel() -> None:
+    with st.sidebar.expander("Adicionar dados da semana", expanded=False):
+        uploaders = {
+            source: st.file_uploader(label, type=["csv"], key=f"upl_{source}")
+            for source, label in UPLOAD_SOURCES
+        }
+        if not st.button("Importar", key="upl_submit"):
+            return
+
+        touched: list[str] = []
+        any_input = False
+        for source, file in uploaders.items():
+            if file is None:
+                continue
+            any_input = True
+            raw = file.getvalue()
+            df, err = _validate_upload(source, raw)
+            if err:
+                st.error(f"{source}: {err}")
+                continue
+            dest_dir = dl.DATA / source
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+            dest = dest_dir / f"upload_{stamp}_{Path(file.name).stem}.csv"
+            dest.write_bytes(raw)
+            st.success(f"{source}: +{len(df):,} linhas → {dest.name}")
+            touched.append(source)
+
+        if not any_input:
+            st.info("Nenhum arquivo selecionado.")
+            return
+
+        if touched:
+            for source in touched:
+                dl.clear_cache(source)
+            st.cache_data.clear()
+            st.rerun()
+
+
 def main() -> None:
     st.title("Segurança Rio — Painel de exploração")
 
+    weekly_upload_panel()
     ocorr = cached_layer("ocorrencias")
     filters = sidebar_filters(ocorr)
 

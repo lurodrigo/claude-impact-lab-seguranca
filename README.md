@@ -18,11 +18,17 @@ streamlit run app.py
 
 ## Layout
 
-- `dados/` — raw data (CSV / XLSX / shapefile / DOCX reports). See `dados/Dicionário de dados.xlsx`.
-- `sh_area_forca/` — shapefile of municipal force areas (polygons, WGS84).
+- `data/<source>/*.csv` — what the loader reads. Each weekly upload adds another file to the corresponding folder; the loader concatenates and dedupes by id. Static sources (cameras, dominio_territorial, areas_forca shapefile) live here too but only ever contain one file.
+- `next_inputs/<source>/week_N.csv` — simulated weekly drops, used to test the upload flow without waiting for real data.
+- `dados/` — original snapshot, untouched. Source of truth for the bootstrap script. See `dados/Dicionário de dados.xlsx`.
 - `relints/` — intelligence reports (DOCX).
+- `scripts/bootstrap_data.py` — one-shot: rebuilds `data/` + `next_inputs/` from `dados/`.
 - `data_loader.py` — normalizes every source into `GeoDataFrame`s in EPSG:4326 and exposes a DuckDB layer for SQL across them.
-- `app.py` — Streamlit dashboard.
+- `app.py` — Streamlit dashboard. Sidebar expander **"Adicionar dados da semana"** uploads new CSVs into `data/<source>/upload_<timestamp>.csv`.
+
+## Adding weekly data
+
+Either drop the CSV into the matching `data/<source>/` folder, or upload it through the sidebar in the dashboard. The three weekly sources are `ocorrencias`, `disk_denuncia`, and `fatores_urbanos`; uploads are validated (required columns, encoding) before being written.
 
 ## Data sources (current)
 
