@@ -27,20 +27,36 @@ def cached_layer(name: str) -> gpd.GeoDataFrame:
     return dl.LAYERS[name]()
 
 
-def gdf_to_points(gdf: gpd.GeoDataFrame) -> pd.DataFrame:
+TOOLTIPS = {
+    "ocorrencias": lambda r: f"Ocorrência: {r.get('desc_delito', '')} ({r.get('ano', '')})",
+    "disk_denuncia": lambda r: f"Denúncia: {r.get('classe', '') or r.get('assuntos.classe', '')} — {r.get('bairro_logradouro', '')}",
+    "cameras": lambda r: f"Câmera — {r.get('nome_area_fm', '')}",
+    "fatores_urbanos": lambda r: f"Fator urbano: {r.get('tipo_ocorrencia_descricao', '')} — {r.get('bairro_nome', '')}",
+    "areas_forca": lambda r: f"Área força: {r.get('nome_subar', '')}",
+    "dominio_territorial": lambda r: f"{r.get('nome_territorio', '')} — {r.get('dominio_orcrim', '')}",
+}
+
+
+def _add_tooltip(df: pd.DataFrame, name: str) -> pd.DataFrame:
+    fn = TOOLTIPS.get(name, lambda r: name)
+    df["tooltip"] = df.apply(fn, axis=1)
+    return df
+
+
+def gdf_to_points(gdf: gpd.GeoDataFrame, name: str) -> pd.DataFrame:
     pts = gdf[gdf.geometry.geom_type == "Point"].copy()
     pts["lon"] = pts.geometry.x
     pts["lat"] = pts.geometry.y
-    return pd.DataFrame(pts.drop(columns="geometry"))
+    return _add_tooltip(pd.DataFrame(pts.drop(columns="geometry")), name)
 
 
-def gdf_to_polygons(gdf: gpd.GeoDataFrame) -> pd.DataFrame:
+def gdf_to_polygons(gdf: gpd.GeoDataFrame, name: str) -> pd.DataFrame:
     polys = gdf[gdf.geometry.geom_type.isin(["Polygon", "MultiPolygon"])].copy()
     polys["coordinates"] = polys.geometry.apply(
         lambda g: [list(g.exterior.coords)] if g.geom_type == "Polygon"
         else [list(p.exterior.coords) for p in g.geoms]
     )
-    return pd.DataFrame(polys.drop(columns="geometry"))
+    return _add_tooltip(pd.DataFrame(polys.drop(columns="geometry")), name)
 
 
 def sidebar_filters(ocorr: gpd.GeoDataFrame) -> dict:
@@ -85,7 +101,7 @@ def build_map(filters: dict, layers_data: dict) -> pdk.Deck:
     deck_layers = []
 
     if filters["layers"]["areas_forca"]:
-        polys = gdf_to_polygons(layers_data["areas_forca"])
+        polys = gdf_to_polygons(layers_data["areas_forca"], "areas_forca")
         deck_layers.append(pdk.Layer(
             "PolygonLayer", polys, get_polygon="coordinates",
             get_fill_color=[0, 100, 200, 30], get_line_color=[0, 60, 160, 200],
@@ -93,7 +109,7 @@ def build_map(filters: dict, layers_data: dict) -> pdk.Deck:
         ))
 
     if filters["layers"]["dominio_territorial"]:
-        polys = gdf_to_polygons(layers_data["dominio_territorial"])
+        polys = gdf_to_polygons(layers_data["dominio_territorial"], "dominio_territorial")
         deck_layers.append(pdk.Layer(
             "PolygonLayer", polys, get_polygon="coordinates",
             get_fill_color=[150, 0, 80, 60], get_line_color=[120, 0, 60, 200],
@@ -102,7 +118,7 @@ def build_map(filters: dict, layers_data: dict) -> pdk.Deck:
 
     for name in ("fatores_urbanos", "cameras", "disk_denuncia", "ocorrencias"):
         if filters["layers"].get(name) and name in layers_data:
-            pts = gdf_to_points(layers_data[name])
+            pts = gdf_to_points(layers_data[name], name)
             if pts.empty:
                 continue
             deck_layers.append(pdk.Layer(
@@ -115,7 +131,7 @@ def build_map(filters: dict, layers_data: dict) -> pdk.Deck:
         layers=deck_layers,
         initial_view_state=RIO_VIEW,
         map_style="light",
-        tooltip={"text": "{desc_delito}{nome_area_fm}{nome_territorio}{tipo_ocorrencia_descricao}"},
+        tooltip={"text": "{tooltip}"},
     )
 
 
