@@ -387,21 +387,27 @@ def render_compstat_panel(cached_layer: Callable[[str], gpd.GeoDataFrame]) -> No
         relints = None
 
     p = period_filter(ocorr, disk)
-    st.divider()
 
-    section_executive(p["ocorrencias"], p["disk_denuncia"])
-    st.divider()
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "1. Resumo Executivo",
+        "2. Mapa de Calor",
+        "3. Análise Temporal",
+        "4. Dinâmica Criminal",
+        "5. Coincidências",
+        "6. Plano de Ação",
+    ])
 
-    section_heatmap(p["ocorrencias"], areas, fatores)
-    st.divider()
+    ranking = pd.DataFrame()
 
-    section_temporal(p["ocorrencias"])
-    st.divider()
-
-    section_denuncia(p["disk_denuncia"], relints)
-    st.divider()
-
-    ranking = section_coincidence(p["ocorrencias"], fatores, cameras, areas)
-    st.divider()
-
-    section_action_plan(ranking)
+    with tab1:
+        section_executive(p["ocorrencias"], p["disk_denuncia"])
+    with tab2:
+        section_heatmap(p["ocorrencias"], areas, fatores)
+    with tab3:
+        section_temporal(p["ocorrencias"])
+    with tab4:
+        section_denuncia(p["disk_denuncia"], relints)
+    with tab5:
+        ranking = section_coincidence(p["ocorrencias"], fatores, cameras, areas)
+    with tab6:
+        section_action_plan(ranking)
