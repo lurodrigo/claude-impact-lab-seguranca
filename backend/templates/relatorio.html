@@ -269,6 +269,12 @@
   </p>
   {% endif %}
 
+  {% if resumo_exec.narrativa_llm %}
+  <div style="border-left:3px solid #e63900; padding:6px 10px; margin-bottom:10px; background:#fafafa; font-size:8.5pt; line-height:1.5;">
+    {{ resumo_exec.narrativa_llm }}
+  </div>
+  {% endif %}
+
   <table style="margin-bottom:10px;">
     <thead>
       <tr>
@@ -593,22 +599,51 @@
 
   <div class="section-title">2. Dinâmica Criminal</div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Fonte</th>
-        <th>Dinâmica do Crime</th>
-        <th>Áreas de Fuga e Escoamento de Bens</th>
-      </tr>
-    </thead>
+  <div class="subsection-title">Disque Denúncia — Análise da área de análise</div>
+
+  {% if disk_denuncia and disk_denuncia.stats.total_denuncias > 0 %}
+  <div class="kpi-row" style="margin-bottom:8px;">
+    <div class="kpi-box">
+      <div class="kpi-label">Total de denúncias</div>
+      <div class="kpi-value" style="font-size:14pt;">{{ disk_denuncia.stats.total_denuncias }}</div>
+      <div class="kpi-sub">registradas na área</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Com rota de fuga</div>
+      <div class="kpi-value" style="font-size:14pt;">{{ disk_denuncia.stats.n_rotas_fuga }}</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Com receptação</div>
+      <div class="kpi-value" style="font-size:14pt;">{{ disk_denuncia.stats.n_receptacao }}</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Com org. criminosa</div>
+      <div class="kpi-value" style="font-size:14pt;">{{ disk_denuncia.stats.n_org_criminosas }}</div>
+    </div>
+  </div>
+
+  {% if disk_denuncia.resumo_llm %}
+  <div style="border-left:3px solid #444; padding:6px 10px; margin-bottom:10px; background:#fafafa; font-size:8.5pt; line-height:1.5;">
+    {{ disk_denuncia.resumo_llm }}
+  </div>
+  {% endif %}
+
+  {% if disk_denuncia.stats.top_classes %}
+  <table style="margin-bottom:6px;">
+    <thead><tr><th>Principais assuntos denunciados</th><th>Tipos de crime</th><th>Modus operandi</th></tr></thead>
     <tbody>
       <tr>
-        <td>Disque Denúncia – {{ meta.nome_area }}</td>
-        <td class="placeholder-cell">Análise em elaboração (processamento LLM sobre denúncias)</td>
-        <td class="placeholder-cell">—</td>
+        <td>{{ disk_denuncia.stats.top_classes | join(", ") }}</td>
+        <td>{{ disk_denuncia.stats.top_desc_delito | join(", ") if disk_denuncia.stats.top_desc_delito else "—" }}</td>
+        <td>{{ disk_denuncia.stats.top_modus_operandi | join(", ") if disk_denuncia.stats.top_modus_operandi else "—" }}</td>
       </tr>
     </tbody>
   </table>
+  {% endif %}
+
+  {% else %}
+  <div class="placeholder-cell">Nenhuma denúncia Disque Denúncia registrada para esta área no período analisado.</div>
+  {% endif %}
 
   <div class="section-title">3. Efetivo Empregado – Força Municipal</div>
 

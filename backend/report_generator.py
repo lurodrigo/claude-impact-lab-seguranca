@@ -29,6 +29,7 @@ from sections.secao1 import (
 )
 from sections.secao4 import calcular_fatores, calcular_psr, calcular_cameras, calcular_plano_de_acao
 from sections.secao5 import calcular_coincidencias, calcular_resumo_executivo
+from disk_denuncia_loader import aggregar_disk_denuncia_por_area
 from map_generator import (
     gerar_mapa_hotspot,
     gerar_heatmap_temporal,
@@ -85,6 +86,7 @@ def gerar_contexto_relatorio(
     ano_fim:    int = DEFAULT_ANO_FIM,
     mes_referencia: str = "",
     gerar_mapas: bool = True,
+    usar_llm: bool = True,
 ) -> dict:
     """
     Main entry point.
@@ -148,7 +150,22 @@ def gerar_contexto_relatorio(
         (df_oc["ano"] >= ano_inicio) & (df_oc["ano"] <= ano_fim)
     ]
     coincidencias  = calcular_coincidencias(df_oc_periodo, df_fat, identificacao["trechos_criticos"])
-    resumo_exec    = calcular_resumo_executivo(identificacao, indicadores, fatores, coincidencias)
+
+    # Disk Denúncia — per-area aggregation from classified .numbers file
+    disk_stats    = aggregar_disk_denuncia_por_area(polygon)
+    disk_resumo_llm = ""
+    if usar_llm:
+        try:
+            from llm_helper import gerar_resumo_disk_denuncia
+            disk_resumo_llm = gerar_resumo_disk_denuncia(nome_area, disk_stats)
+        except Exception as exc:
+            disk_resumo_llm = f"[LLM indisponível: {exc}]"
+
+    resumo_exec = calcular_resumo_executivo(
+        identificacao, indicadores, fatores, coincidencias,
+        disk_denuncia_resumo=disk_resumo_llm,
+        use_llm=usar_llm,
+    )
 
     # ── 5. Map images ────────────────────────────────────────────────────
     img_mapa_hotspot  = ""
@@ -179,6 +196,7 @@ def gerar_contexto_relatorio(
         "plano":           plano,
         "coincidencias":   coincidencias,
         "resumo_exec":     resumo_exec,
+        "disk_denuncia":   {"stats": disk_stats, "resumo_llm": disk_resumo_llm},
         # base64 PNG images
         "img_mapa_hotspot":  img_mapa_hotspot,
         "img_heatmap":       img_heatmap,

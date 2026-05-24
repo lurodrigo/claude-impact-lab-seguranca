@@ -74,21 +74,24 @@ def calcular_resumo_executivo(
     indicadores: dict,
     fatores: list[dict],
     coincidencias: list[dict],
+    disk_denuncia_resumo: str = "",
+    use_llm: bool = True,
 ) -> dict:
     """
-    Builds 4 strategic question-answers.
+    Builds strategic question-answers for the executive summary.
+    When use_llm=True (default), generates a human-readable narrative via Claude.
     Q2 and Q3 require FM operational data (unavailable) — returned as None.
     """
     top = identificacao.get("trechos_criticos", [])[:3]
 
-    # Q1 — hotspot trechos
+    # Q1 — hotspot trechos (deterministic fallback)
     if top:
         partes = [f"{t['logradouro']} ({t['ocorrencias']} oc.)" for t in top]
-        q1 = "Os trechos mais críticos são: " + "; ".join(partes) + "."
+        q1_fallback = "Os trechos mais críticos são: " + "; ".join(partes) + "."
     else:
-        q1 = "Nenhum trecho crítico identificado no período."
+        q1_fallback = "Nenhum trecho crítico identificado no período."
 
-    # Q4 — factors being addressed (have a defined responsible agency)
+    # Q4 — factors being addressed (deterministic fallback)
     ativos = [
         f for f in fatores
         if f.get("orgao") and f["orgao"] not in ("—", "nan", "")
@@ -98,9 +101,9 @@ def calcular_resumo_executivo(
             f"{f['fator']} → {f['orgao']} ({f['quantidade']} ocor.)"
             for f in ativos[:4]
         ]
-        q4 = f"{len(ativos)} fator(es) com órgão responsável: " + "; ".join(partes4) + "."
+        q4_fallback = f"{len(ativos)} fator(es) com órgão responsável: " + "; ".join(partes4) + "."
     else:
-        q4 = "Nenhum fator com órgão responsável identificado na área."
+        q4_fallback = "Nenhum fator com órgão responsável identificado na área."
 
     bingos = [c for c in coincidencias if c["coincidencia"]]
 
@@ -113,16 +116,33 @@ def calcular_resumo_executivo(
         if ranking_pos else ""
     )
 
+    # LLM-generated narrative for the full executive summary
+    narrativa_llm = None
+    if use_llm:
+        try:
+            from llm_helper import gerar_resumo_executivo
+            narrativa_llm = gerar_resumo_executivo(
+                nome_area=identificacao.get("nome_area", ""),
+                indicadores=indicadores,
+                identificacao=identificacao,
+                fatores=fatores,
+                coincidencias=coincidencias,
+                disk_denuncia_resumo=disk_denuncia_resumo,
+            )
+        except Exception as exc:
+            narrativa_llm = f"[Narrativa LLM indisponível: {exc}]"
+
     return {
         "q1_texto":    "Quais são os trechos mais críticos da área?",
-        "q1_resposta": q1,
+        "q1_resposta": q1_fallback,
         "q2_texto":    "O efetivo da FM cobre os pontos críticos?",
         "q2_resposta": None,
         "q3_texto":    "Quais ações foram executadas desde o último relatório?",
         "q3_resposta": None,
         "q4_texto":    "Quais fatores de incidência estão sendo tratados?",
-        "q4_resposta": q4,
+        "q4_resposta": q4_fallback,
         "n_bingos":         len(bingos),
         "n_total_trechos":  len(coincidencias),
         "ranking_resumo":   ranking_resumo,
+        "narrativa_llm":    narrativa_llm,
     }
