@@ -521,9 +521,28 @@ def main():
         logger.error("Set it with: export ANTHROPIC_API_KEY='your-api-key'")
         sys.exit(1)
 
-    # Paths
-    input_path = 'dados/disk_denuncia.csv'
-    output_path = 'output/disk_denuncia_classified.csv'
+    # Parse command line arguments
+    import argparse
+    parser = argparse.ArgumentParser(description='Classify Disque Denúncia reports')
+    parser.add_argument('--input', '-i', default='dados/disk_denuncia.csv',
+                       help='Input CSV file path')
+    parser.add_argument('--output', '-o', default=None,
+                       help='Output CSV file path (default: output/<input_basename>_classified.csv)')
+    parser.add_argument('--limit', '-l', type=int, default=None,
+                       help='Limit number of rows to process (for testing)')
+
+    args = parser.parse_args()
+
+    input_path = args.input
+
+    # Auto-generate output path if not specified
+    if args.output:
+        output_path = args.output
+    else:
+        input_basename = os.path.basename(input_path).replace('.csv', '')
+        output_path = f'output/{input_basename}_classified.csv'
+
+    limit = args.limit
 
     if not os.path.exists(input_path):
         logger.error(f"{input_path} not found")
@@ -532,15 +551,8 @@ def main():
     # Create output directory if it doesn't exist
     os.makedirs('output', exist_ok=True)
 
-    # Check for limit argument (for testing)
-    limit = None
-    if len(sys.argv) > 1:
-        try:
-            limit = int(sys.argv[1])
-            logger.info(f"Running in TEST mode: will process only {limit} rows with relatos")
-        except ValueError:
-            logger.error(f"Invalid limit argument: {sys.argv[1]}")
-            sys.exit(1)
+    if limit:
+        logger.info(f"Running in TEST mode: will process only {limit} rows with relatos")
 
     # Process (async)
     asyncio.run(process_csv_async(input_path, output_path, api_key, limit=limit))
