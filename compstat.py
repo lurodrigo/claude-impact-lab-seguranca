@@ -170,8 +170,9 @@ def section_executive(ocorr: gpd.GeoDataFrame, disk: gpd.GeoDataFrame) -> None:
 
     if "exec_narrativa" in st.session_state:
         st.markdown(
-            f'<div style="border-left:3px solid #e63900; padding:8px 12px; background:#fafafa; '
-            f'font-size:0.9em; line-height:1.6;">{st.session_state["exec_narrativa"]}</div>',
+            f'<div style="border-left:3px solid #e63900; padding:8px 12px; '
+            f'font-size:0.9em; line-height:1.6; color:inherit;">'
+            f'{st.session_state["exec_narrativa"]}</div>',
             unsafe_allow_html=True,
         )
 
@@ -430,8 +431,9 @@ def section_denuncia(disk: gpd.GeoDataFrame, areas: gpd.GeoDataFrame, relints: p
     key = f"disk_narrativa_{sel_area}"
     if key in st.session_state:
         st.markdown(
-            f'<div style="border-left:3px solid #444; padding:8px 12px; background:#fafafa; '
-            f'font-size:0.9em; line-height:1.6;">{st.session_state[key]}</div>',
+            f'<div style="border-left:3px solid #888; padding:8px 12px; '
+            f'font-size:0.9em; line-height:1.6; color:inherit;">'
+            f'{st.session_state[key]}</div>',
             unsafe_allow_html=True,
         )
 
