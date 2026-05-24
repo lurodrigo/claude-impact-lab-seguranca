@@ -12,6 +12,7 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
+import compstat
 import data_loader as dl
 
 UPLOAD_SOURCES = [
@@ -212,10 +213,7 @@ def weekly_upload_panel() -> None:
             st.rerun()
 
 
-def main() -> None:
-    st.title("Segurança Rio — Painel de exploração")
-
-    weekly_upload_panel()
+def render_main_panel() -> None:
     ocorr = cached_layer("ocorrencias")
     filters = sidebar_filters(ocorr)
 
@@ -246,6 +244,16 @@ def main() -> None:
             .value_counts().head(15).rename_axis("delito").reset_index(name="n")
         )
         st.dataframe(top, use_container_width=True, hide_index=True)
+
+
+def main() -> None:
+    st.title("Segurança Rio")
+    weekly_upload_panel()
+    tab_main, tab_compstat = st.tabs(["Visão geral", "Insights recentes"])
+    with tab_main:
+        render_main_panel()
+    with tab_compstat:
+        compstat.render_compstat_panel(cached_layer)
 
 
 if __name__ == "__main__":
