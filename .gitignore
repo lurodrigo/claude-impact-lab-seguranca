@@ -1,5 +1,6 @@
 dados/.DS_Store
 .DS_Store
+data/**/upload_*.csv
 .venv/
 __pycache__/
 *.pyc

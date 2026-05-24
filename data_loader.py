@@ -1,8 +1,12 @@
 """Normalize every Rio public-safety source into WGS84 GeoDataFrames.
 
-All loaders return a `geopandas.GeoDataFrame` in EPSG:4326. `duckdb_connection()`
-gives a DuckDB connection with the spatial extension loaded and every table
-registered as a view, so you can join across sources with SQL.
+Each per-source folder under `data/` is read by globbing its `*.csv` files and
+concatenating them, so new weekly uploads are picked up just by dropping another
+file into the right folder. Static sources (cameras, dominio_territorial,
+areas_forca shapefile) live in the same layout but only ever contain one file.
+
+`duckdb_connection()` gives a DuckDB connection with the spatial extension
+loaded and every layer registered as a view.
 """
 
 from __future__ import annotations
@@ -16,15 +20,33 @@ from shapely import wkt
 from shapely.geometry import Point
 
 ROOT = Path(__file__).resolve().parent
-DADOS = ROOT / "dados"
-OUTROS = DADOS / "outros dados"
-SHAPES = ROOT / "sh_area_forca"
-RELINTS = ROOT / "relints"
+DATA = ROOT / "data"
 
 WGS84 = "EPSG:4326"
 
 # Generous bbox around Rio metro — used to drop corrupt/out-of-area coordinates
-RIO_BBOX = (-44.5, -23.5, -42.5, -22.5)  # (minx, miny, maxx, maxy)
+RIO_BBOX = (-44.5, -23.5, -42.5, -22.5)
+
+# Required columns per uploadable source — validated before accepting uploads
+REQUIRED_COLS: dict[str, set[str]] = {
+    "ocorrencias": {"ano", "mes", "longitude", "latitude", "desc_delito"},
+    "disk_denuncia": {"id_denuncia", "data_denuncia", "latitude", "longitude"},
+    "fatores_urbanos": {"id_resposta_ocorrencia", "coordenada_x", "coordenada_y"},
+}
+
+# Dedup keys per source (last file wins, so re-uploads are idempotent)
+DEDUP_KEYS: dict[str, str] = {
+    "ocorrencias": "id_criptografado",
+    "disk_denuncia": "id_denuncia",
+    "fatores_urbanos": "id_resposta_ocorrencia",
+}
+
+# read_csv kwargs per uploadable source — shared by loader and upload validator
+READ_KWARGS: dict[str, dict] = {
+    "ocorrencias": dict(dtype={"hora": "string", "data": "string"}, low_memory=False),
+    "disk_denuncia": dict(sep=";", encoding="latin1", dtype="string", low_memory=False),
+    "fatores_urbanos": dict(low_memory=False),
+}
 
 
 def _in_rio(lon: pd.Series, lat: pd.Series) -> pd.Series:
@@ -36,20 +58,32 @@ def _to_gdf(df: pd.DataFrame, geom_col: str = "geometry") -> gpd.GeoDataFrame:
     return gpd.GeoDataFrame(df, geometry=geom_col, crs=WGS84)
 
 
+def _concat_csvs(source: str) -> pd.DataFrame:
+    folder = DATA / source
+    files = sorted(folder.glob("*.csv"))
+    if not files:
+        return pd.DataFrame()
+    kwargs = READ_KWARGS.get(source, {})
+    frames = [pd.read_csv(f, **kwargs) for f in files]
+    df = pd.concat(frames, ignore_index=True)
+    key = DEDUP_KEYS.get(source)
+    if key and key in df.columns:
+        df = df.drop_duplicates(subset=[key], keep="last").reset_index(drop=True)
+    return df
+
+
 @lru_cache(maxsize=1)
 def load_cameras() -> gpd.GeoDataFrame:
-    df = pd.read_csv(DADOS / "cameras_areas_fm.csv")
+    df = pd.read_csv(next((DATA / "cameras").glob("*.csv")))
     df["geometry"] = df["geometry"].apply(wkt.loads)
     return _to_gdf(df)
 
 
 @lru_cache(maxsize=1)
 def load_ocorrencias() -> gpd.GeoDataFrame:
-    df = pd.read_csv(
-        DADOS / "df_ocorrencias_tratado - Extração 1 .csv",
-        dtype={"hora": "string", "data": "string"},
-        low_memory=False,
-    )
+    df = _concat_csvs("ocorrencias")
+    if df.empty:
+        return _to_gdf(pd.DataFrame({"geometry": []}))
     df = df.dropna(subset=["longitude", "latitude"])
     df = df[_in_rio(df["longitude"], df["latitude"])]
     df["geometry"] = [Point(x, y) for x, y in zip(df["longitude"], df["latitude"])]
@@ -62,14 +96,9 @@ def load_ocorrencias() -> gpd.GeoDataFrame:
 
 @lru_cache(maxsize=1)
 def load_disk_denuncia() -> gpd.GeoDataFrame:
-    df = pd.read_csv(
-        DADOS / "disk_denuncia_clean.csv",
-        sep=";",
-        encoding="latin1",
-        dtype="string",
-        low_memory=False,
-    )
-    # dtype=string skips pandas' decimal=',' handling — convert manually
+    df = _concat_csvs("disk_denuncia")
+    if df.empty:
+        return _to_gdf(pd.DataFrame({"geometry": []}))
     df["latitude"] = pd.to_numeric(df["latitude"].str.replace(",", ".", regex=False), errors="coerce")
     df["longitude"] = pd.to_numeric(df["longitude"].str.replace(",", ".", regex=False), errors="coerce")
     df = df.dropna(subset=["latitude", "longitude"])
@@ -83,7 +112,9 @@ def load_disk_denuncia() -> gpd.GeoDataFrame:
 
 @lru_cache(maxsize=1)
 def load_fatores_urbanos() -> gpd.GeoDataFrame:
-    df = pd.read_csv(DADOS / "fatores_urbanos.csv", low_memory=False)
+    df = _concat_csvs("fatores_urbanos")
+    if df.empty:
+        return _to_gdf(pd.DataFrame({"geometry": []}))
     # coordenada_x is latitude, coordenada_y is longitude (verified by value range)
     df = df.dropna(subset=["coordenada_x", "coordenada_y"])
     df["geometry"] = [
@@ -94,39 +125,17 @@ def load_fatores_urbanos() -> gpd.GeoDataFrame:
 
 @lru_cache(maxsize=1)
 def load_dominio_territorial() -> gpd.GeoDataFrame:
-    df = pd.read_csv(OUTROS / "dominio_territorial - Extração 1.csv")
+    df = pd.read_csv(next((DATA / "dominio_territorial").glob("*.csv")))
     df["geometry"] = df["geometria"].apply(wkt.loads)
     gdf = _to_gdf(df.drop(columns=["geometria"]))
-    # Drop polygons whose representative point is outside Rio
     pt = gdf.geometry.representative_point()
     return gdf[_in_rio(pt.x, pt.y)].reset_index(drop=True)
 
 
 @lru_cache(maxsize=1)
 def load_areas_forca() -> gpd.GeoDataFrame:
-    return gpd.read_file(SHAPES / "areas_forca_municipal.shp").to_crs(WGS84)
-
-
-@lru_cache(maxsize=1)
-def load_cpsr() -> pd.DataFrame:
-    return pd.read_excel(OUTROS / "CPSR_2020_2022_2024.xlsx")
-
-
-@lru_cache(maxsize=1)
-def load_data_dictionary() -> dict[str, pd.DataFrame]:
-    return pd.read_excel(DADOS / "Dicionário de dados.xlsx", sheet_name=None)
-
-
-@lru_cache(maxsize=1)
-def load_relints() -> pd.DataFrame:
-    from docx import Document
-
-    rows = []
-    for path in sorted(RELINTS.glob("*.docx")):
-        doc = Document(path)
-        text = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
-        rows.append({"file": path.name, "text": text})
-    return pd.DataFrame(rows)
+    shp = next((DATA / "areas_forca").glob("*.shp"))
+    return gpd.read_file(shp).to_crs(WGS84)
 
 
 LAYERS: dict[str, callable] = {
@@ -141,6 +150,15 @@ LAYERS: dict[str, callable] = {
 
 def load_all() -> dict[str, gpd.GeoDataFrame]:
     return {name: fn() for name, fn in LAYERS.items()}
+
+
+def clear_cache(source: str | None = None) -> None:
+    """Invalidate cached layers after files change on disk."""
+    if source is None:
+        for fn in LAYERS.values():
+            fn.cache_clear()
+    elif source in LAYERS:
+        LAYERS[source].cache_clear()
 
 
 def duckdb_connection():
@@ -162,4 +180,5 @@ def duckdb_connection():
 
 if __name__ == "__main__":
     for name, gdf in load_all().items():
-        print(f"{name:22s} {len(gdf):>8,d} rows  bbox={tuple(round(v, 3) for v in gdf.total_bounds)}")
+        bounds = tuple(round(v, 3) for v in gdf.total_bounds) if not gdf.empty else ()
+        print(f"{name:22s} {len(gdf):>8,d} rows  bbox={bounds}")
