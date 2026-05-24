@@ -479,6 +479,38 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
     logger.info(f"TOTAL COST: ${total_cost:.2f}")
     logger.info("=" * 60)
 
+    # Save cost report to file
+    cost_report_path = output_path.replace('.csv', '_cost_report.txt')
+    with open(cost_report_path, 'w', encoding='utf-8') as f:
+        f.write("=" * 60 + "\n")
+        f.write("DISQUE DENÚNCIA CLASSIFICATION - COST REPORT\n")
+        f.write("=" * 60 + "\n\n")
+        f.write(f"Input file: {input_path}\n")
+        f.write(f"Output file: {output_path}\n")
+        f.write(f"Date: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+        f.write(f"Total rows processed: {len(rows)}\n")
+        f.write(f"Rows with relatos: {len(rows_with_relatos) if limit is None else limit}\n")
+        f.write(f"Rows without relatos: {len(rows_without_relatos)}\n")
+        f.write(f"API calls made: {len(rows_with_relatos) // BATCH_SIZE + 1 if limit is None else (limit // BATCH_SIZE + 1)}\n")
+        f.write(f"Batch size: {BATCH_SIZE}\n")
+        f.write(f"Max concurrent requests: {max_concurrent}\n\n")
+        f.write("TOKEN USAGE:\n")
+        f.write(f"  Input tokens: {total_usage['input_tokens']:,}\n")
+        f.write(f"  Output tokens: {total_usage['output_tokens']:,}\n")
+        f.write(f"  Cache creation tokens: {total_usage['cache_creation_input_tokens']:,}\n")
+        f.write(f"  Cache read tokens: {total_usage['cache_read_input_tokens']:,}\n")
+        f.write(f"  Total tokens: {sum(total_usage.values()):,}\n\n")
+        f.write("COSTS (USD):\n")
+        f.write(f"  Input cost: ${cost_input:.4f}\n")
+        f.write(f"  Output cost: ${cost_output:.4f}\n")
+        f.write(f"  Cache write cost: ${cost_cache_write:.4f}\n")
+        f.write(f"  Cache read cost: ${cost_cache_read:.4f}\n")
+        f.write(f"  ─────────────────────\n")
+        f.write(f"  TOTAL COST: ${total_cost:.2f}\n")
+        f.write("=" * 60 + "\n")
+
+    logger.info(f"Cost report saved to: {cost_report_path}")
+
 
 def main():
     """Main entry point."""
