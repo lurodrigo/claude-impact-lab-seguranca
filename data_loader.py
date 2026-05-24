@@ -90,7 +90,9 @@ def load_ocorrencias() -> gpd.GeoDataFrame:
     df = df.drop(columns=["geometria"], errors="ignore")
     df["ano"] = pd.to_numeric(df["ano"], errors="coerce").astype("Int64")
     df["mes"] = pd.to_numeric(df["mes"], errors="coerce").astype("Int64")
-    df["hora"] = pd.to_numeric(df["hora"], errors="coerce").astype("Int64")
+    df["hora"] = pd.to_numeric(
+        df["hora"].astype("string").str.slice(0, 2), errors="coerce"
+    ).astype("Int64")
     return _to_gdf(df)
 
 
