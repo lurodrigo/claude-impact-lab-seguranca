@@ -64,6 +64,18 @@ class DenunciaClassification(BaseModel):
         description="Which faction/organization if found, otherwise null"
     )
 
+    fator_urbano_categoria: str = Field(
+        description="Urban factor category from CompStat table, or 'Nenhum' if not mentioned"
+    )
+
+    fator_urbano: str = Field(
+        description="Specific urban factor from CompStat table, or 'Nenhum' if not mentioned"
+    )
+
+    fator_urbano_orgao_responsavel: str = Field(
+        description="Organization responsible for resolving the urban factor, or 'Nenhum' if not applicable"
+    )
+
 
 # System prompt with classification instructions (will be cached)
 SYSTEM_PROMPT = """Você é um analista de segurança pública do CompStat Municipal do Rio de Janeiro. Sua tarefa é classificar relatos de denúncias anônimas para identificar padrões criminais.
@@ -100,11 +112,69 @@ INSTRUÇÕES DE CLASSIFICAÇÃO:
    - "Indeterminado" se não há informação
    - Se "Sim", preencha influencia_org_criminosas_detalhes com qual facção
 
+6. **Fatores Urbanos de Incidência Criminal** (MAIS IMPORTANTE):
+   Identifique se o relato menciona algum fator urbano da tabela CompStat abaixo.
+   Se SIM, preencha: fator_urbano_categoria, fator_urbano, fator_urbano_orgao_responsavel
+   Se NÃO, preencha todos com "Nenhum"
+
+   TABELA DE FATORES URBANOS:
+
+   Categoria: Trânsito
+   - Fator: "Ponto de retenção de tráfego" → Órgão: "CET-Rio"
+   - Fator: "Motocicletas trafegando no passeio" → Órgão: "GM-Rio"
+   - Fator: "Bicicletas trafegando no passeio" → Órgão: "GM-Rio"
+   - Fator: "Estacionamento irregular forçando pedestres à pista" → Órgão: "SEOP"
+   - Fator: "Veículos de grande porte obstruindo a visibilidade" → Órgão: "SEOP"
+
+   Categoria: Ponto de ônibus
+   - Fator: "Ponto de ônibus com histórico de vandalismo" → Órgão: "SMTR"
+
+   Categoria: Vegetação urbana
+   - Fator: "Vegetação encobrindo iluminação pública" → Órgão: "Comlurb"
+   - Fator: "Vegetação obstruindo a visibilidade do passeio" → Órgão: "Comlurb"
+   - Fator: "Vegetação servindo de esconderijo" → Órgão: "Comlurb"
+
+   Categoria: Limpeza urbana
+   - Fator: "Lixo/entulho obstruindo a visibilidade" → Órgão: "Comlurb"
+   - Fator: "Lixo/entulho forçando pedestres à pista" → Órgão: "Comlurb"
+
+   Categoria: Iluminação
+   - Fator: "Área mal iluminada com circulação de pedestres" → Órgão: "RioLuz"
+   - Fator: "Área mal iluminada com parada de veículos" → Órgão: "RioLuz"
+
+   Categoria: Obstrução de logradouro
+   - Fator: "Mobiliário urbano desviando pedestres à pista" → Órgão: "Seconserva"
+   - Fator: "Calçada estreita forçando pedestres à pista" → Órgão: "Seconserva"
+   - Fator: "Comércio irregular obstruindo a visibilidade do passeio" → Órgão: "SEOP"
+
+   Categoria: Refúgio
+   - Fator: "Mobiliário abandonado servindo de esconderijo" → Órgão: "Seconserva"
+   - Fator: "Tapumes servindo de esconderijo" → Órgão: "Seconserva"
+   - Fator: "Mobiliário/estrutura servindo de esconderijo" → Órgão: "Seconserva"
+   - Fator: "Vãos ou cavidades usados como esconderijo" → Órgão: "Seconserva"
+
+   Categoria: Pessoa em situação de rua
+   - Fator: "Adultos (transitória / pernoite / moradia)" → Órgão: "SMAS"
+   - Fator: "Crianças e/ou adolescentes" → Órgão: "SMAS"
+   - Fator: "Famílias ou casais" → Órgão: "SMAS"
+
+   Categoria: Cena de uso de drogas
+   - Fator: "Eventual (sem pontos de venda próximos)" → Órgão: "SMAS"
+   - Fator: "Crônica (com pontos de venda nas proximidades)" → Órgão: "SMAS"
+
+   Categoria: Praças e parques
+   - Fator: "Área mal iluminada com circulação de pedestres" → Órgão: "RioLuz"
+   - Fator: "Vegetação servindo de esconderijo" → Órgão: "Comlurb"
+   - Fator: "Mobiliário abandonado servindo de esconderijo" → Órgão: "Seconserva"
+   - Fator: "Mobiliário/estrutura servindo de esconderijo" → Órgão: "Seconserva"
+
 IMPORTANTE:
 - Seja preciso e baseie-se APENAS no texto fornecido
 - Use "Indeterminado" quando não houver informação clara
 - Para campos de detalhes (rotas_fuga_detalhes, etc.), use null se não aplicável
 - Se desc_delito for "Indeterminado" (não é roubo), modus_operandi DEVE ser "Indeterminado" também
+- Para fatores urbanos: use "Nenhum" se não houver menção a fatores da tabela
+- Se múltiplos fatores forem mencionados, escolha o MAIS RELEVANTE para o contexto criminal
 
 Analise o seguinte relato e extraia as informações pedidas em formato JSON estruturado."""
 
@@ -147,14 +217,17 @@ Responda APENAS com um array JSON (sem texto adicional):
     "pontos_receptacao": "...",
     "pontos_receptacao_detalhes": "..." ou null,
     "influencia_org_criminosas": "...",
-    "influencia_org_criminosas_detalhes": "..." ou null
+    "influencia_org_criminosas_detalhes": "..." ou null,
+    "fator_urbano_categoria": "...",
+    "fator_urbano": "...",
+    "fator_urbano_orgao_responsavel": "..."
   }},
   ...
 ]"""
 
             response = await client.messages.create(
                 model="claude-sonnet-4-6",
-                max_tokens=4096,
+                max_tokens=6000,
                 system=[
                     {
                         "type": "text",
@@ -250,7 +323,10 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
         'pontos_receptacao',
         'pontos_receptacao_detalhes',
         'influencia_org_criminosas',
-        'influencia_org_criminosas_detalhes'
+        'influencia_org_criminosas_detalhes',
+        'fator_urbano_categoria',
+        'fator_urbano',
+        'fator_urbano_orgao_responsavel'
     ]
 
     # Filter rows with non-empty relatos
@@ -274,7 +350,7 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
         rows_with_relatos = rows_with_relatos[:limit]
 
     # Process rows with relatos in batches (async)
-    BATCH_SIZE = 30  # Process 30 relatos per API call
+    BATCH_SIZE = 20  # Process 20 relatos per API call (reduced due to longer prompt with urban factors)
     logger.info(f"Classifying with Claude using ASYNC batch processing (batch size: {BATCH_SIZE})")
     logger.info(f"Max concurrent requests: {max_concurrent}")
     logger.info("Using prompt caching for 90% cost reduction")
@@ -328,6 +404,9 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
                 row['pontos_receptacao_detalhes'] = classification.pontos_receptacao_detalhes or ''
                 row['influencia_org_criminosas'] = classification.influencia_org_criminosas
                 row['influencia_org_criminosas_detalhes'] = classification.influencia_org_criminosas_detalhes or ''
+                row['fator_urbano_categoria'] = classification.fator_urbano_categoria
+                row['fator_urbano'] = classification.fator_urbano
+                row['fator_urbano_orgao_responsavel'] = classification.fator_urbano_orgao_responsavel
             else:
                 # Fallback to "Indeterminado" on error
                 row['desc_delito'] = 'Indeterminado'
@@ -338,6 +417,9 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
                 row['pontos_receptacao_detalhes'] = ''
                 row['influencia_org_criminosas'] = 'Indeterminado'
                 row['influencia_org_criminosas_detalhes'] = ''
+                row['fator_urbano_categoria'] = 'Nenhum'
+                row['fator_urbano'] = 'Nenhum'
+                row['fator_urbano_orgao_responsavel'] = 'Nenhum'
 
             processed_rows.append(row)
 
@@ -352,6 +434,9 @@ async def process_csv_async(input_path: str, output_path: str, api_key: str, lim
         row['pontos_receptacao_detalhes'] = ''
         row['influencia_org_criminosas'] = 'Indeterminado'
         row['influencia_org_criminosas_detalhes'] = ''
+        row['fator_urbano_categoria'] = 'Nenhum'
+        row['fator_urbano'] = 'Nenhum'
+        row['fator_urbano_orgao_responsavel'] = 'Nenhum'
         processed_rows.append(row)
 
     # Write output CSV
