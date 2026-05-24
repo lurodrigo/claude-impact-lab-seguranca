@@ -7,3 +7,5 @@ __pycache__/
 .streamlit/secrets.toml
 .duckdb
 .cache/
+*.parquet
+output/

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* ── Reset & base ──────────────────────────────────────────── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #1a1a1a;
+    background: #fff;
+  }
+
+  /* ── Page layout ───────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+
+  .page {
+    width: 100%;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  /* ── Header strip ──────────────────────────────────────────── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    font-size: 7.5pt;
+    color: #444;
+  }
+  .header .title-org { font-weight: bold; color: #1a1a1a; font-size: 8pt; }
+
+  /* ── Section headers ───────────────────────────────────────── */
+  .section-title {
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 9.5pt;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin: 10px 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .subsection-title {
+    background: #e8e8e8;
+    color: #1a1a1a;
+    font-size: 8.5pt;
+    font-weight: bold;
+    padding: 3px 8px;
+    margin: 6px 0 4px 0;
+    border-left: 4px solid #e63900;
+  }
+
+  /* ── Tables ────────────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 6px;
+  }
+  th {
+    background: #2c2c2c;
+    color: #fff;
+    padding: 4px 6px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 8pt;
+  }
+  td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f7f7f7; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── Info grid (key-value pairs) ───────────────────────────── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+  }
+  .info-cell {
+    padding: 4px 8px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .info-cell:nth-child(even) { border-right: none; }
+  .info-label {
+    font-size: 7pt;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: block;
+  }
+  .info-value {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #1a1a1a;
+  }
+
+  /* ── KPI boxes ─────────────────────────────────────────────── */
+  .kpi-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .kpi-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-top: 3px solid #e63900;
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7pt; color: #666; text-transform: uppercase; }
+  .kpi-value { font-size: 18pt; font-weight: bold; color: #e63900; line-height: 1.1; }
+  .kpi-sub   { font-size: 7.5pt; color: #444; }
+  .kpi-pos   { color: #2a7a2a; }
+  .kpi-neg   { color: #cc0000; }
+
+  /* ── Images ────────────────────────────────────────────────── */
+  .img-container {
+    text-align: center;
+    margin: 6px 0;
+  }
+  img { max-width: 100%; height: auto; }
+
+  /* ── Map cover ─────────────────────────────────────────────── */
+  .cover-header {
+    text-align: center;
+    border: 2px solid #1a1a1a;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .cover-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .cover-subtitle { font-size: 9.5pt; color: #444; margin-top: 3px; }
+  .cover-meta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .cover-meta-item {
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .cover-meta-label { font-size: 7pt; color: #888; text-transform: uppercase; }
+  .cover-meta-value { font-size: 9pt; font-weight: bold; }
+
+  /* ── Factor table ──────────────────────────────────────────── */
+  .fator-row td:first-child { font-weight: bold; }
+  .orgao-badge {
+    display: inline-block;
+    background: #e8e8e8;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 7.5pt;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* ── Action plan placeholder ───────────────────────────────── */
+  .placeholder-cell {
+    background: #fafafa;
+    color: #bbb;
+    font-style: italic;
+    font-size: 8pt;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .footer {
+    font-size: 7pt;
+    color: #888;
+    border-top: 1px solid #ccc;
+    padding-top: 3px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── Variation indicator ──────────────────────────────────── */
+  .var-pos { color: #cc0000; font-weight: bold; }
+  .var-neg { color: #2a7a2a; font-weight: bold; }
+  .var-na  { color: #999; }
+</style>
+</head>
+<body>
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 1 — COVER + HOTSPOT MAP
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="cover-header">
+    <div class="cover-title">Relatório Analítico de Área</div>
+    <div class="cover-subtitle">Subsídio para Reunião de CompStat</div>
+    <div class="cover-meta-row">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Área de análise</div>
+        <div class="cover-meta-value" style="font-size:8pt">{{ meta.nome_area }}</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Período (dados criminais)</div>
+        <div class="cover-meta-value">{{ meta.periodo_criminal }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">
+    Mapa de segmentos quentes — {{ meta.nome_area }}<br>
+    <small style="font-weight:normal">Total de roubos: {{ indicadores.roubos }} ocorrências, {{ meta.periodo_criminal }}</small>
+  </div>
+
+  {% if img_mapa_hotspot %}
+  <div class="img-container">
+    <img src="data:image/png;base64,{{ img_mapa_hotspot }}" alt="Mapa de hotspots">
+  </div>
+  {% else %}
+  <div class="placeholder-cell">Mapa não disponível</div>
+  {% endif %}
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 1</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 2 — RESUMO EXECUTIVO
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">Resumo Executivo</div>
+
+  {% if resumo_exec.ranking_resumo %}
+  <p style="font-size:8.5pt; font-weight:bold; color:#e63900; margin-bottom:8px;">
+    {{ meta.nome_area }}: {{ resumo_exec.ranking_resumo }}
+  </p>
+  {% endif %}
+
+  <table style="margin-bottom:10px;">
+    <thead>
+      <tr>
+        <th style="width:36%">Pergunta estratégica</th>
+        <th>Resposta (dados)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">{{ resumo_exec.q1_texto }}</td>
+        <td>{{ resumo_exec.q1_resposta }}</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">{{ resumo_exec.q2_texto }}</td>
+        <td class="placeholder-cell" style="text-align:left;">Dado de efetivo FM não disponível — a preencher na reunião.</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">{{ resumo_exec.q3_texto }}</td>
+        <td class="placeholder-cell" style="text-align:left;">Sem registro de ações anteriores — a preencher na reunião.</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">{{ resumo_exec.q4_texto }}</td>
+        <td>{{ resumo_exec.q4_resposta }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  {% if resumo_exec.n_total_trechos > 0 %}
+  <div class="subsection-title">
+    Painel de Coincidências — resumo
+  </div>
+  <p style="font-size:8pt; color:#444; margin-bottom:6px;">
+    {{ resumo_exec.n_bingos }} de {{ resumo_exec.n_total_trechos }} trechos críticos têm fator urbano identificado nas proximidades (≈ 70 m).
+    Trechos com coincidência são candidatos prioritários para intervenção coordenada.
+  </p>
+  {% endif %}
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 2</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 3 — SEÇÃO 1: OCORRÊNCIAS CRIMINAIS
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">1. Ocorrências Criminais</div>
+
+  <div class="subsection-title">Identificação da Área</div>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <span class="info-label">Área FM</span>
+      <span class="info-value">{{ identificacao.nome_area }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Número de trechos críticos</span>
+      <span class="info-value">{{ identificacao.n_trechos_criticos }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">AISP</span>
+      <span class="info-value">{{ identificacao.aisp }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Bairro(s)</span>
+      <span class="info-value">{{ identificacao.bairros }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">DP</span>
+      <span class="info-value">{{ identificacao.dp }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">BPM</span>
+      <span class="info-value">{{ identificacao.bpm }}</span>
+    </div>
+    <div class="info-cell" style="grid-column: 1 / -1">
+      <span class="info-label">Área sob influência de grupo criminoso</span>
+      <span class="info-value">{{ identificacao.grupos_criminosos }}</span>
+    </div>
+  </div>
+
+  <div class="subsection-title">Indicadores do Período ({{ meta.periodo_criminal }})</div>
+
+  <div class="kpi-row">
+    <div class="kpi-box">
+      <div class="kpi-label">Total de ocorrências</div>
+      <div class="kpi-value">{{ indicadores.total }}</div>
+      <div class="kpi-sub">{{ meta.periodo_criminal }}</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Roubos</div>
+      <div class="kpi-value">{{ indicadores.roubos }}</div>
+      {% if indicadores.variacao_pct is not none %}
+      <div class="kpi-sub {% if indicadores.variacao_pct > 0 %}kpi-neg{% else %}kpi-pos{% endif %}">
+        {% if indicadores.variacao_pct > 0 %}▲{% else %}▼{% endif %}
+        {{ indicadores.variacao_pct | abs }}% vs período anterior
+      </div>
+      {% else %}
+      <div class="kpi-sub var-na">Sem período anterior disponível</div>
+      {% endif %}
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Furtos</div>
+      <div class="kpi-value">{{ indicadores.furtos }}</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Ranking entre áreas FM</div>
+      <div class="kpi-value">
+        {% if indicadores.ranking_pos %}{{ indicadores.ranking_pos }}º{% else %}—{% endif %}
+      </div>
+      <div class="kpi-sub">
+        {% if indicadores.ranking_pct %}{{ indicadores.ranking_pct }}% das ocorrências{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Distribuição de Ocorrências por Tipo</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">Ranking</th>
+        <th>Tipo de ocorrência</th>
+        <th style="width:15%">Qtd no período</th>
+        <th style="width:20%">Data da última ocorrência</th>
+        <th style="width:18%">Variação s/ período anterior</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tipo in tipos %}
+      <tr>
+        <td style="text-align:center; font-weight:bold">{{ tipo.ranking }}º</td>
+        <td>{{ tipo.tipo }}</td>
+        <td style="text-align:center">{{ tipo.quantidade }}</td>
+        <td style="text-align:center">{{ tipo.ultima_data }}</td>
+        <td style="text-align:center">
+          {% if tipo.variacao_pct is not none %}
+            <span class="{% if tipo.variacao_pct > 0 %}var-pos{% else %}var-neg{% endif %}">
+              {% if tipo.variacao_pct > 0 %}▲{% else %}▼{% endif %}
+              {{ tipo.variacao_pct | abs }}%
+            </span>
+          {% else %}
+            <span class="var-na">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 3</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 4 — ANÁLISE TEMPORAL
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">1. Ocorrências Criminais — Análise Temporal</div>
+
+  <div class="subsection-title">Distribuição de ocorrências por hora do dia e dia da semana</div>
+
+  {% if img_heatmap %}
+  <div class="img-container">
+    <img src="data:image/png;base64,{{ img_heatmap }}" alt="Heatmap temporal">
+  </div>
+  {% endif %}
+
+  <table>
+    <thead>
+      <tr>
+        <th>Período predominante</th>
+        <th>Dia / Horário crítico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ temporal.resumo_texto }}</td>
+        <td>
+          {% if temporal.dia_pico is not none and temporal.hora_pico is not none %}
+          {{ temporal.day_labels[temporal.days.index(temporal.dia_pico)] if temporal.dia_pico in temporal.days else '—' }},
+          às {{ "%02d"|format(temporal.hora_pico) }}h
+          {% else %}
+          —
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsection-title">Evolução mensal de ocorrências</div>
+
+  {% if img_serie_mensal %}
+  <div class="img-container">
+    <img src="data:image/png;base64,{{ img_serie_mensal }}" alt="Série mensal">
+  </div>
+  {% endif %}
+
+  <div class="subsection-title">Trechos críticos (top {{ identificacao.n_trechos_criticos }})</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">#</th>
+        <th>Logradouro</th>
+        <th style="width:20%">Ocorrências no período</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in identificacao.trechos_criticos %}
+      <tr>
+        <td style="text-align:center">{{ loop.index }}</td>
+        <td>{{ t.logradouro }}</td>
+        <td style="text-align:center">{{ t.ocorrencias }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 4</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 5 — PAINEL DE COINCIDÊNCIAS
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">Painel de Coincidências — Hotspot × Fator Urbano</div>
+
+  <p style="font-size:8pt; color:#555; margin-bottom:8px;">
+    Para cada trecho crítico, verifica a presença de fatores urbanos cadastrados no raio de 70 m.
+    Coincidências indicam pontos de intervenção prioritária e coordenação multi-agência.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">#</th>
+        <th style="width:32%">Logradouro (trecho crítico)</th>
+        <th style="width:10%">Crimes</th>
+        <th>Fatores urbanos identificados (≈ 70 m)</th>
+        <th style="width:12%">Coincidência</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in coincidencias %}
+      <tr>
+        <td style="text-align:center">{{ loop.index }}</td>
+        <td style="font-weight:bold">{{ c.trecho }}</td>
+        <td style="text-align:center">{{ c.ocorrencias }}</td>
+        <td>
+          {% if c.fatores %}
+            {% for f in c.fatores %}
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">{{ f }}</span>
+            {% endfor %}
+          {% else %}
+            <span style="color:#aaa; font-style:italic;">Nenhum fator próximo registrado</span>
+          {% endif %}
+        </td>
+        <td style="text-align:center; font-weight:bold; {% if c.coincidencia %}color:#cc0000;{% else %}color:#888;{% endif %}">
+          {{ "BINGO" if c.coincidencia else "—" }}
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not coincidencias %}
+      <tr>
+        <td colspan="5" class="placeholder-cell">Nenhum trecho crítico identificado no período.</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  {% set n_bingos = coincidencias | selectattr("coincidencia") | list | length %}
+  {% if n_bingos > 0 %}
+  <p style="font-size:8pt; margin-top:6px; font-weight:bold; color:#cc0000;">
+    {{ n_bingos }} trecho(s) com coincidência → candidatos prioritários para operação coordenada.
+  </p>
+  {% endif %}
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 5</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 6 — SEÇÃO 2 + SEÇÃO 3 (placeholders)
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">2. Dinâmica Criminal</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fonte</th>
+        <th>Dinâmica do Crime</th>
+        <th>Áreas de Fuga e Escoamento de Bens</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Disque Denúncia – {{ meta.nome_area }}</td>
+        <td class="placeholder-cell">Análise em elaboração (processamento LLM sobre denúncias)</td>
+        <td class="placeholder-cell">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">3. Efetivo Empregado – Força Municipal</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Situação Atual</th>
+        <th>Sugestão de Alteração</th>
+        <th>Justificativa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nº de Agentes por Turno</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Locais de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Horário de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Dias de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Modalidade de Emprego</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 6</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 7 — SEÇÃO 4: FATORES DE INCIDÊNCIA CRIMINAL
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">4. Fatores de Incidência Criminal</div>
+
+  <div class="subsection-title">Fatores de incidência criminal identificados na área de análise</div>
+
+  {% if fatores %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Fator identificado</th>
+        <th>Descrição</th>
+        <th style="width:18%">Responsável</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in fatores %}
+      <tr class="fator-row">
+        <td>{{ f.fator }}</td>
+        <td>{{ f.descricao }}</td>
+        <td><span class="orgao-badge">{{ f.orgao }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="placeholder-cell">Nenhum fator urbano registrado para esta área no período analisado.</div>
+  {% endif %}
+
+  {% if psr.total > 0 %}
+  <div class="subsection-title">Pessoas em Situação de Rua (PSR) — CPSR</div>
+  <div class="info-grid">
+    <div class="info-cell">
+      <span class="info-label">Total registrado na área</span>
+      <span class="info-value">{{ psr.total }}</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Anos do censo</span>
+      <span class="info-value">{{ psr.anos | join(", ") }}</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="subsection-title">Câmeras identificadas na área</div>
+  <div class="info-grid">
+    <div class="info-cell" style="grid-column: 1 / -1">
+      <span class="info-label">Quantidade total de câmeras</span>
+      <span class="info-value">{{ cameras.total }} câmeras</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 7</span>
+  </div>
+</div>
+
+
+{# ══════════════════════════════════════════════════════════════
+   PAGE 8 — SEÇÃO 5: PLANO DE AÇÃO
+══════════════════════════════════════════════════════════════ #}
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>{{ meta.mes_referencia }}</span>
+  </div>
+
+  <div class="section-title">5. Plano de Ação e Responsabilização</div>
+
+  <p style="font-size:8pt; color:#555; margin-bottom:8px; font-style:italic;">
+    Ações pré-preenchidas com base nos fatores urbanos identificados na área.
+    Confirmação de prazo e responsável deve ser feita na reunião de CompStat.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ação recomendada</th>
+        <th style="width:20%">Responsável</th>
+        <th style="width:13%">Prazo sugerido</th>
+        <th style="width:12%">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in plano %}
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">{{ p.fator_origem }}</span>
+          {{ p.acao }}
+        </td>
+        <td><span class="orgao-badge">{{ p.responsavel }}</span></td>
+        <td style="text-align:center">{{ p.prazo }}</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      {% endfor %}
+      {# Leave blank rows for additional commitments agreed in the meeting #}
+      {% for i in range([4, 8 - plano|length]|max) %}
+      <tr>
+        <td style="height:22px">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | {{ meta.mes_referencia }}</span>
+    <span>pág. 8</span>
+  </div>
+</div>
+
+</body>
+</html>
