@@ -7,6 +7,43 @@ Recebe um ID de polígono FM, calcula todos os indicadores, e exporta HTML ou PD
 
 ---
 
+## Dados obrigatórios
+
+O backend lê 6 arquivos de dados que estão incluídos neste repositório. Eles precisam estar nas seguintes pastas, **na raiz do projeto** (um nível acima de `backend/`):
+
+```
+compstat_rio/              ← raiz do projeto (onde fica backend/)
+├── dados/
+│   ├── df_ocorrencias_tratado - Extração 1 .csv    (~23 MB)
+│   ├── fatores_urbanos.csv                          (~1.3 MB)
+│   ├── cameras_areas_fm.csv                         (~142 KB)
+│   └── outros dados/
+│       ├── dominio_territorial - Extração 1.csv     (~1.4 MB)
+│       └── CPSR_2020_2022_2024.xlsx                 (~10.8 MB)
+└── sh_area_forca/
+    ├── areas_forca_municipal.shp
+    ├── areas_forca_municipal.shx
+    ├── areas_forca_municipal.dbf
+    ├── areas_forca_municipal.prj
+    └── areas_forca_municipal.cpg
+```
+
+> Os paths são configurados em `backend/config.py` (dict `PATHS`). Se a estrutura de pastas mudar, edite apenas esse arquivo.
+
+**Descrição de cada arquivo:**
+
+
+| Arquivo | Conteúdo | Usado para |
+|---------|----------|-----------|
+| `df_ocorrencias_tratado - Extração 1 .csv` | Registros de ocorrências criminais georreferenciados (roubos e furtos) | Tudo: KPIs, mapa, heatmap, trechos, ranking |
+| `fatores_urbanos.csv` | Fatores ambientais/urbanos mapeados em campo pelos órgãos | Seção 4, Painel de Coincidências, Plano de Ação |
+| `cameras_areas_fm.csv` | Localização das câmeras CIVITAS/COR por área FM | Mapa de hotspot, contagem de câmeras |
+| `dominio_territorial - Extração 1.csv` | Polígonos de domínio territorial por facção (CV, TCP, ADA…) | Identificação de grupos criminosos |
+| `CPSR_2020_2022_2024.xlsx` | Censo de Pessoas em Situação de Rua (2020, 2022, 2024) | Seção 4 — PSR |
+| `areas_forca_municipal.shp` + auxiliares | Shapefile com os 8 polígonos das áreas da Força Municipal | Filtro espacial de todos os dados |
+
+---
+
 ## Instalação
 
 ```bash
