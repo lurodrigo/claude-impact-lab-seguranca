@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* ── Reset & base ──────────────────────────────────────────── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #1a1a1a;
+    background: #fff;
+  }
+
+  /* ── Page layout ───────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+
+  .page {
+    width: 100%;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  /* ── Header strip ──────────────────────────────────────────── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    font-size: 7.5pt;
+    color: #444;
+  }
+  .header .title-org { font-weight: bold; color: #1a1a1a; font-size: 8pt; }
+
+  /* ── Section headers ───────────────────────────────────────── */
+  .section-title {
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 9.5pt;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin: 10px 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .subsection-title {
+    background: #e8e8e8;
+    color: #1a1a1a;
+    font-size: 8.5pt;
+    font-weight: bold;
+    padding: 3px 8px;
+    margin: 6px 0 4px 0;
+    border-left: 4px solid #e63900;
+  }
+
+  /* ── Tables ────────────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 6px;
+  }
+  th {
+    background: #2c2c2c;
+    color: #fff;
+    padding: 4px 6px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 8pt;
+  }
+  td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f7f7f7; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── Info grid (key-value pairs) ───────────────────────────── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+  }
+  .info-cell {
+    padding: 4px 8px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .info-cell:nth-child(even) { border-right: none; }
+  .info-label {
+    font-size: 7pt;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: block;
+  }
+  .info-value {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #1a1a1a;
+  }
+
+  /* ── KPI boxes ─────────────────────────────────────────────── */
+  .kpi-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .kpi-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-top: 3px solid #e63900;
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7pt; color: #666; text-transform: uppercase; }
+  .kpi-value { font-size: 18pt; font-weight: bold; color: #e63900; line-height: 1.1; }
+  .kpi-sub   { font-size: 7.5pt; color: #444; }
+  .kpi-pos   { color: #2a7a2a; }
+  .kpi-neg   { color: #cc0000; }
+
+  /* ── Images ────────────────────────────────────────────────── */
+  .img-container {
+    text-align: center;
+    margin: 6px 0;
+  }
+  img { max-width: 100%; height: auto; }
+
+  /* ── Map cover ─────────────────────────────────────────────── */
+  .cover-header {
+    text-align: center;
+    border: 2px solid #1a1a1a;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .cover-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .cover-subtitle { font-size: 9.5pt; color: #444; margin-top: 3px; }
+  .cover-meta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 6px;
+  }
+  .cover-meta-item {
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .cover-meta-label { font-size: 7pt; color: #888; text-transform: uppercase; }
+  .cover-meta-value { font-size: 9pt; font-weight: bold; }
+
+  /* ── Factor table ──────────────────────────────────────────── */
+  .fator-row td:first-child { font-weight: bold; }
+  .orgao-badge {
+    display: inline-block;
+    background: #e8e8e8;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 7.5pt;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* ── Action plan placeholder ───────────────────────────────── */
+  .placeholder-cell {
+    background: #fafafa;
+    color: #bbb;
+    font-style: italic;
+    font-size: 8pt;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .footer {
+    font-size: 7pt;
+    color: #888;
+    border-top: 1px solid #ccc;
+    padding-top: 3px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── Variation indicator ──────────────────────────────────── */
+  .var-pos { color: #cc0000; font-weight: bold; }
+  .var-neg { color: #2a7a2a; font-weight: bold; }
+  .var-na  { color: #999; }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="cover-header">
+    <div class="cover-title">Relatório Analítico de Área</div>
+    <div class="cover-subtitle">Subsídio para Reunião de CompStat</div>
+    <div class="cover-meta-row">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Área de análise</div>
+        <div class="cover-meta-value" style="font-size:8pt">Rua Lauro Müller – Avenida General Severiano – Avenida Venceslau Brás</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Período (dados criminais)</div>
+        <div class="cover-meta-value">2023–2024</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">
+    Mapa de segmentos quentes — Rua Lauro Müller – Avenida General Severiano – Avenida Venceslau Brás<br>
+    <small style="font-weight:normal">Total de roubos: 211 ocorrências, 2023–2024</small>
+  </div>
+
+  
+  <div class="placeholder-cell">Mapa não disponível</div>
+  
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 1</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">Resumo Executivo</div>
+
+  
+  <p style="font-size:8.5pt; font-weight:bold; color:#e63900; margin-bottom:8px;">
+    Rua Lauro Müller – Avenida General Severiano – Avenida Venceslau Brás: 6º lugar entre 8 áreas FM (4.8% das ocorrências da cidade)
+  </p>
+  
+
+  
+  <div style="border-left:3px solid #e63900; padding:6px 10px; margin-bottom:10px; background:#fafafa; font-size:8.5pt; line-height:1.5;">
+    A área formada pela Rua Lauro Müller, Avenida General Severiano e Avenida Venceslau Brás registrou 211 ocorrências no biênio 2023–2024, todas classificadas como roubos, com crescimento de 36,1% em relação ao período anterior. O índice posiciona a área no 6º lugar entre as 8 zonas monitoradas pelo programa Foco Municipal, respondendo por 4,8% do total de ocorrências da cidade — volume que, combinado à trajetória de alta, indica deterioração consistente do quadro de segurança local. A proximidade de comunidades sob domínio do CV e do TCP é fator estrutural relevante para a dinâmica criminal observada.
+
+A concentração de ocorrências é geograficamente precisa: Avenida Pasteur e Rua Lauro Müller lideram com 56 registros cada, seguidas pela Rua da Passagem com 41, somando juntas 72% do total da área. Essa concentração espacial facilita a priorização de intervenções e reduz a dispersão de recursos. Todos os cinco trechos analisados apresentaram coincidência entre incidência criminal e fatores urbanos mapeados, o que indica que as condições ambientais estão diretamente associadas à escolha dos pontos de atuação pelos autores.
+
+Os fatores urbanos identificados — iluminação pública deficiente, vegetação cobrindo luminárias e obstruindo a visibilidade do passeio, além de pontos de retenção do tráfego — configuram um ambiente propício à abordagem e à evasão de criminosos. A ausência total de denúncias ao Disque Denúncia no período reforça o diagnóstico de baixa percepção de eficácia institucional entre a população local ou possível clima de intimidação. A resposta adequada exige ação intersetorial articulada entre segurança pública, gestão urbana e iluminação, com foco imediato nos três trechos
+  </div>
+  
+
+  <table style="margin-bottom:10px;">
+    <thead>
+      <tr>
+        <th style="width:36%">Pergunta estratégica</th>
+        <th>Resposta (dados)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">Quais são os trechos mais críticos da área?</td>
+        <td>Os trechos mais críticos são: Avenida Pasteur (56 oc.); Rua Lauro Muller (56 oc.); Rua Da Passagem (41 oc.).</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">O efetivo da FM cobre os pontos críticos?</td>
+        <td class="placeholder-cell" style="text-align:left;">Dado de efetivo FM não disponível — a preencher na reunião.</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">Quais ações foram executadas desde o último relatório?</td>
+        <td class="placeholder-cell" style="text-align:left;">Sem registro de ações anteriores — a preencher na reunião.</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold; vertical-align:top;">Quais fatores de incidência estão sendo tratados?</td>
+        <td>14 fator(es) com órgão responsável: Área mal iluminada com circulação de pedestres → Rio Luz (22 ocor.); Vegetação encobrindo iluminação pública → COMLURB (8 ocor.); Ponto de retenção do tráfego → CET-Rio (7 ocor.); Vegetação obstruindo a visibilidade do passeio → COMLURB (7 ocor.).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <div class="subsection-title">
+    Painel de Coincidências — resumo
+  </div>
+  <p style="font-size:8pt; color:#444; margin-bottom:6px;">
+    5 de 5 trechos críticos têm fator urbano identificado nas proximidades (≈ 70 m).
+    Trechos com coincidência são candidatos prioritários para intervenção coordenada.
+  </p>
+  
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 2</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">1. Ocorrências Criminais</div>
+
+  <div class="subsection-title">Identificação da Área</div>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <span class="info-label">Área FM</span>
+      <span class="info-value">Rua Lauro Müller – Avenida General Severiano – Avenida Venceslau Brás</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Número de trechos críticos</span>
+      <span class="info-value">5</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">AISP</span>
+      <span class="info-value">2</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Bairro(s)</span>
+      <span class="info-value">Botafogo / Urca</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">DP</span>
+      <span class="info-value">10ª / 12ª</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">BPM</span>
+      <span class="info-value">2º / 19º</span>
+    </div>
+    <div class="info-cell" style="grid-column: 1 / -1">
+      <span class="info-label">Área sob influência de grupo criminoso</span>
+      <span class="info-value">Comunidades próximas sob domínio do CV / TCP</span>
+    </div>
+  </div>
+
+  <div class="subsection-title">Indicadores do Período (2023–2024)</div>
+
+  <div class="kpi-row">
+    <div class="kpi-box">
+      <div class="kpi-label">Total de ocorrências</div>
+      <div class="kpi-value">211</div>
+      <div class="kpi-sub">2023–2024</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Roubos</div>
+      <div class="kpi-value">211</div>
+      
+      <div class="kpi-sub kpi-neg">
+        ▲
+        36.1% vs período anterior
+      </div>
+      
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Furtos</div>
+      <div class="kpi-value">0</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Ranking entre áreas FM</div>
+      <div class="kpi-value">
+        6º
+      </div>
+      <div class="kpi-sub">
+        4.8% das ocorrências
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Distribuição de Ocorrências por Tipo</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">Ranking</th>
+        <th>Tipo de ocorrência</th>
+        <th style="width:15%">Qtd no período</th>
+        <th style="width:20%">Data da última ocorrência</th>
+        <th style="width:18%">Variação s/ período anterior</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td style="text-align:center; font-weight:bold">1º</td>
+        <td>Roubo a transeunte</td>
+        <td style="text-align:center">104</td>
+        <td style="text-align:center">31/10/2024</td>
+        <td style="text-align:center">
+          
+            <span class="var-pos">
+              ▲
+              26.8%
+            </span>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center; font-weight:bold">2º</td>
+        <td>Roubo de aparelho celular</td>
+        <td style="text-align:center">94</td>
+        <td style="text-align:center">31/10/2024</td>
+        <td style="text-align:center">
+          
+            <span class="var-pos">
+              ▲
+              54.1%
+            </span>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center; font-weight:bold">3º</td>
+        <td>Roubo em coletivo</td>
+        <td style="text-align:center">13</td>
+        <td style="text-align:center">31/08/2023</td>
+        <td style="text-align:center">
+          
+            <span class="var-pos">
+              ▲
+              8.3%
+            </span>
+          
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 3</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">1. Ocorrências Criminais — Análise Temporal</div>
+
+  <div class="subsection-title">Distribuição de ocorrências por hora do dia e dia da semana</div>
+
+  
+
+  <table>
+    <thead>
+      <tr>
+        <th>Período predominante</th>
+        <th>Dia / Horário crítico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Todos os dias entre 12h e 21h, com pico às 19h. Maior concentração: Qua.</td>
+        <td>
+          
+          Qua,
+          às 19h
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsection-title">Evolução mensal de ocorrências</div>
+
+  
+
+  <div class="subsection-title">Trechos críticos (top 5)</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">#</th>
+        <th>Logradouro</th>
+        <th style="width:20%">Ocorrências no período</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td style="text-align:center">1</td>
+        <td>Avenida Pasteur</td>
+        <td style="text-align:center">56</td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">2</td>
+        <td>Rua Lauro Muller</td>
+        <td style="text-align:center">56</td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">3</td>
+        <td>Rua Da Passagem</td>
+        <td style="text-align:center">41</td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">4</td>
+        <td>Avenida Lauro Sodre</td>
+        <td style="text-align:center">39</td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">5</td>
+        <td>Avenida Venceslau Bras</td>
+        <td style="text-align:center">32</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 4</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">Painel de Coincidências — Hotspot × Fator Urbano</div>
+
+  <p style="font-size:8pt; color:#555; margin-bottom:8px;">
+    Para cada trecho crítico, verifica a presença de fatores urbanos cadastrados no raio de 70 m.
+    Coincidências indicam pontos de intervenção prioritária e coordenação multi-agência.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">#</th>
+        <th style="width:32%">Logradouro (trecho crítico)</th>
+        <th style="width:10%">Crimes</th>
+        <th>Fatores urbanos identificados (≈ 70 m)</th>
+        <th style="width:12%">Coincidência</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td style="text-align:center">1</td>
+        <td style="font-weight:bold">Avenida Pasteur</td>
+        <td style="text-align:center">56</td>
+        <td>
+          
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Área mal iluminada com circulação de pedestres</span>
+            
+          
+        </td>
+        <td style="text-align:center; font-weight:bold; color:#cc0000;">
+          BINGO
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">2</td>
+        <td style="font-weight:bold">Rua Lauro Muller</td>
+        <td style="text-align:center">56</td>
+        <td>
+          
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Estacionamento irregular forçando pedestres à pista</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Área mal iluminada com circulação de pedestres</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Ponto de retenção do tráfego</span>
+            
+          
+        </td>
+        <td style="text-align:center; font-weight:bold; color:#cc0000;">
+          BINGO
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">3</td>
+        <td style="font-weight:bold">Rua Da Passagem</td>
+        <td style="text-align:center">41</td>
+        <td>
+          
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Vegetação encobrindo iluminação pública</span>
+            
+          
+        </td>
+        <td style="text-align:center; font-weight:bold; color:#cc0000;">
+          BINGO
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">4</td>
+        <td style="font-weight:bold">Avenida Lauro Sodre</td>
+        <td style="text-align:center">39</td>
+        <td>
+          
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Área mal iluminada com circulação de pedestres</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Comércio irregular obstruindo a visibilidade do passeio</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Vegetação obstruindo a visibilidade do passeio</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Mobiliário urbano desviando pedestres para a pista</span>
+            
+          
+        </td>
+        <td style="text-align:center; font-weight:bold; color:#cc0000;">
+          BINGO
+        </td>
+      </tr>
+      
+      <tr>
+        <td style="text-align:center">5</td>
+        <td style="font-weight:bold">Avenida Venceslau Bras</td>
+        <td style="text-align:center">32</td>
+        <td>
+          
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Ponto de retenção do tráfego</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Área mal iluminada com circulação de pedestres</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Comércio irregular obstruindo a visibilidade do passeio</span>
+            
+              <span class="orgao-badge" style="margin:1px 2px; display:inline-block;">Pessoas em situação de rua</span>
+            
+          
+        </td>
+        <td style="text-align:center; font-weight:bold; color:#cc0000;">
+          BINGO
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+
+  
+  
+  <p style="font-size:8pt; margin-top:6px; font-weight:bold; color:#cc0000;">
+    5 trecho(s) com coincidência → candidatos prioritários para operação coordenada.
+  </p>
+  
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 5</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">2. Dinâmica Criminal</div>
+
+  <div class="subsection-title">Disque Denúncia — Análise da área de análise</div>
+
+  
+  <div class="placeholder-cell">Nenhuma denúncia Disque Denúncia registrada para esta área no período analisado.</div>
+  
+
+  <div class="section-title">3. Efetivo Empregado – Força Municipal</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Situação Atual</th>
+        <th>Sugestão de Alteração</th>
+        <th>Justificativa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nº de Agentes por Turno</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Locais de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Horário de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Dias de Cobertura</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Modalidade de Emprego</td>
+        <td class="placeholder-cell">—</td>
+        <td>N/A</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 6</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">4. Fatores de Incidência Criminal</div>
+
+  <div class="subsection-title">Fatores de incidência criminal identificados na área de análise</div>
+
+  
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Fator identificado</th>
+        <th>Descrição</th>
+        <th style="width:18%">Responsável</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class="fator-row">
+        <td>Área mal iluminada com circulação de pedestres</td>
+        <td>Entrada e saída de universidade. Necessidade de melhorar a iluminação das calçadas.</td>
+        <td><span class="orgao-badge">Rio Luz</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Vegetação encobrindo iluminação pública</td>
+        <td>GALHO DE ÁRVORE CAINDO</td>
+        <td><span class="orgao-badge">COMLURB</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Ponto de retenção do tráfego</td>
+        <td>Não foi identificado o Fator de Incidência Criminal.</td>
+        <td><span class="orgao-badge">CET-Rio</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Vegetação obstruindo a visibilidade do passeio</td>
+        <td>poda e capina em cima do tunel, onde há um acampamento constante de psr</td>
+        <td><span class="orgao-badge">COMLURB</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Comércio irregular obstruindo a visibilidade do passeio</td>
+        <td>Uma barraca de ambulante na frente do shopping.</td>
+        <td><span class="orgao-badge">SEOP</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Estacionamento irregular forçando pedestres à pista</td>
+        <td>Estacionamento na calçada. ⛔ ODJUS = Pedras soltas no calçadão. Sem alterações nos outros aspectos.</td>
+        <td><span class="orgao-badge">SEOP</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Praças e Parques</td>
+        <td>Não foi identificado o Fator de Incidência Criminal.</td>
+        <td><span class="orgao-badge">—</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Pessoas em situação de rua</td>
+        <td>Morador de rua dormindo no papelão ocupando a calçada</td>
+        <td><span class="orgao-badge">SMAS</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Área mal iluminada com parada de veículos</td>
+        <td>Área de parada de veículos, entradas e saídas de centro médico e universidades. Necessidade de iluminação em ponto de onibus e ciclovias.</td>
+        <td><span class="orgao-badge">Rio Luz</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Calçada estreita forçando pedestres à pista</td>
+        <td>Pedestre com dificuldade de andar na calçada .
+E índice de assalto também</td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Motocicletas trafegando no passeio</td>
+        <td>Não foi identificado o Fator de Incidência Criminal.</td>
+        <td><span class="orgao-badge">GM-Rio</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Vãos ou cavidades usados como esconderijo</td>
+        <td>gradil constantemente vandalizado para acesso indevido de motos; avaliar colocação de cadeado e soldagem</td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Lixo/entulho forçando pedestres à pista</td>
+        <td>lixo e entulhos abandonados</td>
+        <td><span class="orgao-badge">COMLURB</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Mobiliário urbano desviando pedestres para a pista</td>
+        <td>Identificado em: Avenida Lauro Sodré.</td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Mobiliário/estrutura servindo de esconderijo</td>
+        <td>Passagem pode Servir como esconderijo ou rota de fuga.</td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+      </tr>
+      
+      <tr class="fator-row">
+        <td>Sem ocorrência</td>
+        <td>97968</td>
+        <td><span class="orgao-badge">—</span></td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+
+  
+  <div class="subsection-title">Pessoas em Situação de Rua (PSR) — CPSR</div>
+  <div class="info-grid">
+    <div class="info-cell">
+      <span class="info-label">Total registrado na área</span>
+      <span class="info-value">37</span>
+    </div>
+    <div class="info-cell">
+      <span class="info-label">Anos do censo</span>
+      <span class="info-value">2020, 2022, 2024</span>
+    </div>
+  </div>
+  
+
+  <div class="subsection-title">Câmeras identificadas na área</div>
+  <div class="info-grid">
+    <div class="info-cell" style="grid-column: 1 / -1">
+      <span class="info-label">Quantidade total de câmeras</span>
+      <span class="info-value">50 câmeras</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 7</span>
+  </div>
+</div>
+
+
+
+<div class="page">
+
+  <div class="header">
+    <span class="title-org">CompStat Municipal | Prefeitura do Rio de Janeiro</span>
+    <span>Maio 2026</span>
+  </div>
+
+  <div class="section-title">5. Plano de Ação e Responsabilização</div>
+
+  <p style="font-size:8pt; color:#555; margin-bottom:8px; font-style:italic;">
+    Ações pré-preenchidas com base nos fatores urbanos identificados na área.
+    Confirmação de prazo e responsável deve ser feita na reunião de CompStat.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ação recomendada</th>
+        <th style="width:20%">Responsável</th>
+        <th style="width:13%">Prazo sugerido</th>
+        <th style="width:12%">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Área mal iluminada com circulação de pedestres</span>
+          Substituição ou reparo de luminárias nos pontos críticos identificados
+        </td>
+        <td><span class="orgao-badge">Rio Luz</span></td>
+        <td style="text-align:center">10 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Vegetação obstruindo a visibilidade do passeio</span>
+          Poda de vegetação nos logradouros indicados para restaurar visibilidade do passeio
+        </td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+        <td style="text-align:center">15 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Comércio irregular obstruindo a visibilidade do passeio</span>
+          Fiscalização e notificação do comércio irregular; remoção se reincidente
+        </td>
+        <td><span class="orgao-badge">SEOP</span></td>
+        <td style="text-align:center">10 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Estacionamento irregular forçando pedestres à pista</span>
+          Operação de fiscalização de estacionamento irregular no trecho
+        </td>
+        <td><span class="orgao-badge">CET-Rio</span></td>
+        <td style="text-align:center">Imediato</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Pessoas em situação de rua</span>
+          Acionamento de equipe de abordagem social da SMAS para o trecho
+        </td>
+        <td><span class="orgao-badge">SMAS</span></td>
+        <td style="text-align:center">5 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Área mal iluminada com parada de veículos</span>
+          Substituição ou reparo de luminárias — priorizar pontos de parada
+        </td>
+        <td><span class="orgao-badge">Rio Luz</span></td>
+        <td style="text-align:center">10 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Calçada estreita forçando pedestres à pista</span>
+          Intervenção de qualificação de calçada — priorizar trechos críticos
+        </td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+        <td style="text-align:center">30 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Lixo/entulho forçando pedestres à pista</span>
+          Remoção de lixo/entulho e notificação do gerador de resíduos
+        </td>
+        <td><span class="orgao-badge">COMLURB</span></td>
+        <td style="text-align:center">5 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Mobiliário urbano desviando pedestres para a pista</span>
+          Relocação de mobiliário urbano ou alargamento de calçada
+        </td>
+        <td><span class="orgao-badge">SECONSERVA</span></td>
+        <td style="text-align:center">30 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <span style="font-size:7pt; color:#888; display:block;">Mobiliário/estrutura servindo de esconderijo</span>
+          Remoção ou relocação de estrutura identificada como facilitadora de crime
+        </td>
+        <td><span class="orgao-badge">SEOP</span></td>
+        <td style="text-align:center">15 dias</td>
+        <td style="text-align:center; color:#aaa; font-style:italic;">Em aberto</td>
+      </tr>
+      
+      
+      
+      <tr>
+        <td style="height:22px">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td style="height:22px">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td style="height:22px">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <td style="height:22px">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <span>Secretaria-geral do CompStat Municipal | Maio 2026</span>
+    <span>pág. 8</span>
+  </div>
+</div>
+
+</body>
+</html>

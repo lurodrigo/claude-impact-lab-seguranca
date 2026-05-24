@@ -120,7 +120,7 @@ def calcular_resumo_executivo(
     narrativa_llm = None
     if use_llm:
         try:
-            from llm_helper import gerar_resumo_executivo
+            from llm_gen import gerar_resumo_executivo
             narrativa_llm = gerar_resumo_executivo(
                 nome_area=identificacao.get("nome_area", ""),
                 indicadores=indicadores,

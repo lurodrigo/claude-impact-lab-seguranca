@@ -156,7 +156,7 @@ def gerar_contexto_relatorio(
     disk_resumo_llm = ""
     if usar_llm:
         try:
-            from llm_helper import gerar_resumo_disk_denuncia
+            from llm_gen import gerar_resumo_disk_denuncia
             disk_resumo_llm = gerar_resumo_disk_denuncia(nome_area, disk_stats)
         except Exception as exc:
             disk_resumo_llm = f"[LLM indisponível: {exc}]"
