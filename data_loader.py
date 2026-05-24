@@ -63,7 +63,7 @@ def load_ocorrencias() -> gpd.GeoDataFrame:
 @lru_cache(maxsize=1)
 def load_disk_denuncia() -> gpd.GeoDataFrame:
     df = pd.read_csv(
-        DADOS / "disk_denuncia.csv",
+        DADOS / "disk_denuncia_clean.csv",
         sep=";",
         encoding="latin1",
         dtype="string",
