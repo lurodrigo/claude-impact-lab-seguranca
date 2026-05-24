@@ -14,6 +14,7 @@ import streamlit as st
 
 import compstat
 import data_loader as dl
+import report_panel
 
 UPLOAD_SOURCES = [
     ("ocorrencias", "Ocorrências (crimes)"),
@@ -249,11 +250,13 @@ def render_main_panel() -> None:
 def main() -> None:
     st.title("Segurança Rio")
     weekly_upload_panel()
-    tab_main, tab_compstat = st.tabs(["Visão geral", "Insights recentes"])
+    tab_main, tab_compstat, tab_report = st.tabs(["Visão geral", "Insights recentes", "Gerar Relatório"])
     with tab_main:
         render_main_panel()
     with tab_compstat:
         compstat.render_compstat_panel(cached_layer)
+    with tab_report:
+        report_panel.render_report_panel()
 
 
 if __name__ == "__main__":
